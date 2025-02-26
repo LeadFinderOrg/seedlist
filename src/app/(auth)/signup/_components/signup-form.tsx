@@ -5,16 +5,12 @@ import Link from "next/link";
 export const SignupForm = () => {
   return (
     <>
-      <div className="w-full min-h-screen flex flex-col justify-center items-center bg-white">
-        <div className="w-full px-6 md:px-16 mt-8">
-          <section className="w-full md:w-[560px]">
-            <div className="mt-4 text-center mb-6">
-              <span className="text-gray">Already registered? </span>{" "}
-              <Link href="/login" className="text-blue-500">
-                Login
-              </Link>
-            </div>
-          </section>
+      <div className="min-h-screen w-full flex items-center justify-center bg-gray-100">
+        <div className="mt-4 text-center mb-6">
+          <span className="text-gray">Already registered? </span>{" "}
+          <Link href="/login" className="text-blue-500">
+            Login
+          </Link>
         </div>
       </div>
     </>
