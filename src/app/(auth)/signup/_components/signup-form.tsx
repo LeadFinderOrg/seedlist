@@ -2,53 +2,84 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { FaRegEnvelope } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { LuLock, LuUser } from "react-icons/lu";
+import { z } from "zod";
+
 const loginBackground = "/images/loginBackground.png";
 const seedListLogo = "/images/SeedlistLogo.png";
 
+const signupSchema = z
+  .object({
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+    email: z.string().email("Please enter a valid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    confirmPassword: z
+      .string()
+      .min(6, "Confirm password must be at least 6 characters"),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords do not match",
+    path: ["confirmPassword"],
+  });
+
+type SignupFormInputs = z.infer<typeof signupSchema>;
+
 export const SignupForm = () => {
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignupFormInputs>({
+    resolver: zodResolver(signupSchema),
+  });
+
+  // Handle form submission
+  const onSubmit = (data: SignupFormInputs) => {
+    console.log("Signup Data:", data);
+    // Implement your signup logic here.
+  };
+
   return (
-    <>
-      <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#eaf2ff]">
-        {/* Background Image */}
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#eaf2ff]">
+      {/* Background Image */}
+      <Image
+        src={loginBackground}
+        alt="Background"
+        layout="fill"
+        objectFit="fill"
+        className="absolute inset-0 z-0"
+      />
+
+      {/* Logo */}
+      <div className="relative z-10 flex flex-col items-center mb-2">
         <Image
-          src={loginBackground}
-          alt="Background"
-          layout="fill"
-          objectFit="fill"
-          className="absolute inset-0 z-0"
+          src={seedListLogo}
+          alt="SeedList.ai Logo"
+          width={180}
+          height={60}
         />
+      </div>
 
-        {/* Logo */}
-        <div className="relative z-10 flex flex-col items-center mb-2">
-          <Image
-            src={seedListLogo}
-            alt="SeedList.ai Logo"
-            width={180}
-            height={60}
-          />
-        </div>
+      {/* Signup Card */}
+      <div className="relative z-10 w-full max-w-md px-8 py-5 bg-white rounded-lg shadow-lg mb-3">
+        <h1 className="text-2xl font-semibold text-center text-slate-800">
+          Sign Up
+        </h1>
 
-        {/* Login Card */}
-        <div className="relative z-10 w-full max-w-md px-8 py-5 bg-white rounded-lg shadow-lg mb-3">
-          <h1 className="text-2xl font-semibold text-center text-slate-800">
-            Sign Up
-          </h1>
-
+        {/* Form */}
+        <form onSubmit={handleSubmit(onSubmit)}>
           {/* Name Inputs */}
           <div className="mt-3 grid grid-cols-2 gap-4">
             <div>
@@ -59,10 +90,14 @@ export const SignupForm = () => {
                   type="text"
                   placeholder="Enter first name"
                   className="pl-10"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  {...register("firstName")}
                 />
               </div>
+              {errors.firstName && (
+                <p className="mt-1 text-xs text-red-600">
+                  {errors.firstName.message}
+                </p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium">Last Name</label>
@@ -72,10 +107,14 @@ export const SignupForm = () => {
                   type="text"
                   placeholder="Enter last name"
                   className="pl-10"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  {...register("lastName")}
                 />
               </div>
+              {errors.lastName && (
+                <p className="mt-1 text-xs text-red-600">
+                  {errors.lastName.message}
+                </p>
+              )}
             </div>
           </div>
 
@@ -88,10 +127,14 @@ export const SignupForm = () => {
                 type="email"
                 placeholder="Enter email"
                 className="pl-10"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                {...register("email")}
               />
             </div>
+            {errors.email && (
+              <p className="mt-1 text-xs text-red-600">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           {/* Password Input */}
@@ -103,8 +146,7 @@ export const SignupForm = () => {
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter password"
                 className="pl-10 pr-10"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                {...register("password")}
               />
               <button
                 type="button"
@@ -114,6 +156,11 @@ export const SignupForm = () => {
                 {showPassword ? <FiEye /> : <FiEyeOff />}
               </button>
             </div>
+            {errors.password && (
+              <p className="mt-1 text-xs text-red-600">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           {/* Confirm Password Input */}
@@ -127,8 +174,7 @@ export const SignupForm = () => {
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Re-enter password"
                 className="pl-10 pr-10"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
+                {...register("confirmPassword")}
               />
               <button
                 type="button"
@@ -138,44 +184,54 @@ export const SignupForm = () => {
                 {showConfirmPassword ? <FiEye /> : <FiEyeOff />}
               </button>
             </div>
+            {errors.confirmPassword && (
+              <p className="mt-1 text-xs text-red-600">
+                {errors.confirmPassword.message}
+              </p>
+            )}
           </div>
 
-          <Button className="w-full mt-6" variant="primary" size="lg">
+          <Button
+            className="w-full mt-6"
+            variant="primary"
+            size="lg"
+            type="submit"
+          >
             Sign Up
           </Button>
+        </form>
 
-          <p className="mt-4 text-center text-sm text-slate-700">
-            Already have an account?{" "}
-            <Link href="/login" className="underline">
-              Sign in here
-            </Link>
-          </p>
+        <p className="mt-4 text-center text-sm text-slate-700">
+          Already have an account?{" "}
+          <Link href="/login" className="underline">
+            Sign in here
+          </Link>
+        </p>
 
-          <div className="flex items-center my-4">
-            <div className="flex-1 h-px bg-gray-300"></div>
-            <span className="px-3 text-slate-700 text-sm">or</span>
-            <div className="flex-1 h-px bg-gray-300"></div>
-          </div>
-
-          <Button className="w-full" variant="outline" size="lg">
-            <FcGoogle className="text-xl" />
-            Sign Up with Google
-          </Button>
-          <p className="mt-4 text-xs text-slate-700">
-            Creating an account indicates your agreement with Seedlist’s
-            <a href="#" className="underline">
-              {" "}
-              Terms of Service{" "}
-            </a>
-            &
-            <a href="#" className="underline">
-              {" "}
-              Privacy Policy
-            </a>
-            .
-          </p>
+        <div className="flex items-center my-4">
+          <div className="flex-1 h-px bg-gray-300"></div>
+          <span className="px-3 text-slate-700 text-sm">or</span>
+          <div className="flex-1 h-px bg-gray-300"></div>
         </div>
+
+        <Button className="w-full" variant="outline" size="lg">
+          <FcGoogle className="text-xl" />
+          Sign Up with Google
+        </Button>
+        <p className="mt-4 text-xs text-slate-700">
+          Creating an account indicates your agreement with Seedlist’s
+          <a href="#" className="underline">
+            {" "}
+            Terms of Service{" "}
+          </a>
+          &
+          <a href="#" className="underline">
+            {" "}
+            Privacy Policy
+          </a>
+          .
+        </p>
       </div>
-    </>
+    </div>
   );
 };
