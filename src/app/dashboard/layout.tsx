@@ -1,5 +1,5 @@
 import { AppSidebar } from "@/app/dashboard/_components/AppSidebar/app-sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import NavigationPath from "./_components/AppSidebar/NavPath";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
@@ -7,10 +7,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <SidebarProvider>
       <AppSidebar />
       <main className="w-full">
-        <header className="w-full flex items-center justify-between p-4">
-          <SidebarTrigger />
-          <NavigationPath />
-        </header>
+        <NavigationPath />
         {children}
       </main>
     </SidebarProvider>
