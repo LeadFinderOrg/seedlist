@@ -34,8 +34,9 @@ const signupSchema = z
 type SignupFormInputs = z.infer<typeof signupSchema>;
 
 export const SignupForm = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
 
   const {
     register,
