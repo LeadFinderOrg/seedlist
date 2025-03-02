@@ -1,14 +1,7 @@
-import { Bell, Megaphone } from "lucide-react";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-  DropdownMenuContent,
-  DropdownMenuItem,
-} from "@/components/ui/dropdown-menu";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Bell, Megaphone } from "lucide-react";
 import Image from "next/image";
+import AvatarDropdown from "./AvatarDropdown";
 
 const line = "/images/Line.png";
 
@@ -23,21 +16,6 @@ export default function NavigationPath() {
 
       {/* Right Side */}
       <div className="flex items-center gap-6">
-        {/* <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button
-              variant="outline"
-              className="flex items-center gap-2 px-4 py-2"
-            >
-              My Workspace
-              <span className="ml-1">▼</span>
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end" className="w-40">
-            <DropdownMenuItem>Workspace 1</DropdownMenuItem>
-            <DropdownMenuItem>Workspace 2</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu> */}
         <Megaphone className="w-6 h-6 text-blue-500 cursor-pointer" />
 
         <div className="relative">
@@ -50,13 +28,7 @@ export default function NavigationPath() {
         <Image src={line} alt="Background" width={2} height={4} />
 
         {/* User Avatar */}
-        <Avatar>
-          <AvatarImage
-            src="https://randomuser.me/api/portraits/women/2.jpg"
-            alt="User"
-          />
-          <AvatarFallback>AB</AvatarFallback>
-        </Avatar>
+        <AvatarDropdown />
       </div>
     </nav>
   );

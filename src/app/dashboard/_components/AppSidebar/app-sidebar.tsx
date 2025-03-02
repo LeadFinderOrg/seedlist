@@ -20,32 +20,24 @@ import {
 import { MENU_ITEMS } from "@/utils/constants/menu-items";
 import { ChevronUp, User2 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import usePathname from next/navigation
+
+const seedListLogo = "/images/SeedlistLogo.png";
+import Image from "next/image";
 
 export function AppSidebar() {
-  const pathname = usePathname();
-  const normalizedPathname = pathname.replace(/^\/dashboard\//, "/");
-
   return (
     <Sidebar>
-      <SidebarHeader>Logo</SidebarHeader>
+      <SidebarHeader>
+        <Image src={seedListLogo} alt="SeedList Logo" width={120} height={40} />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
               {MENU_ITEMS.map((item) => {
-                const normalizedItemUrl = `/${item.url}`;
-
-                const isActive =
-                  normalizedPathname === normalizedItemUrl ||
-                  normalizedPathname.startsWith(normalizedItemUrl);
-
                 return (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton
-                      asChild
-                      className={isActive ? "bg-blue-200 text-blue-700" : ""}
-                    >
+                    <SidebarMenuButton asChild>
                       <Link href={item.url}>
                         <div className="flex items-center space-x-2">
                           <item.icon className="w-5 h-5" />
