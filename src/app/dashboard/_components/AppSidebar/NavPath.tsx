@@ -2,6 +2,8 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Bell, Megaphone } from "lucide-react";
 import Image from "next/image";
 import AvatarDropdown from "./AvatarDropdown";
+import NotificationDropdown from "./NotificationDropdown";
+import NoticeDropdown from "./NoticeDropdown";
 
 const line = "/images/Line.png";
 
@@ -16,14 +18,9 @@ export default function NavigationPath() {
 
       {/* Right Side */}
       <div className="flex items-center gap-6">
-        <Megaphone className="w-6 h-6 text-blue-500 cursor-pointer" />
+        <NoticeDropdown />
 
-        <div className="relative">
-          <Bell className="w-6 h-6 text-blue-500 cursor-pointer" />
-          <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white">
-            2
-          </span>
-        </div>
+        <NotificationDropdown />
 
         <Image src={line} alt="Background" width={2} height={4} />
 
