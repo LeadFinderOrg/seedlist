@@ -1,5 +1,10 @@
 import React from "react";
+import EmailAccountsRoot from "./_components/EmailAccountsRoot";
 
 export default function page() {
-  return <div className="px-6 py-3"> Email Accounts</div>;
+  return (
+    <div className="p-6">
+      <EmailAccountsRoot />
+    </div>
+  );
 }
