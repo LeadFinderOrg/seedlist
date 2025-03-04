@@ -1,6 +1,11 @@
-import React from "react";
-import { ChevronUp, User2 } from "lucide-react";
+"use client";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Sidebar,
   SidebarContent,
@@ -12,32 +17,37 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { MENU_ITEMS } from "@/utils/constants/menu-items";
+import { ChevronUp, User2 } from "lucide-react";
+import Link from "next/link";
+
+const seedListLogo = "/images/SeedlistLogo.png";
+import Image from "next/image";
 
 export function AppSidebar() {
   return (
     <Sidebar>
-      <SidebarHeader>Logo</SidebarHeader>
+      <SidebarHeader>
+        <Image src={seedListLogo} alt="SeedList Logo" width={120} height={40} />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
             <SidebarMenu>
-              {MENU_ITEMS.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {MENU_ITEMS.map((item) => {
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton asChild>
+                      <Link href={item.url}>
+                        <div className="flex items-center space-x-2">
+                          <item.icon className="w-5 h-5" />
+                          <span>{item.title}</span>
+                        </div>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

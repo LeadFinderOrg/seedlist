@@ -1,15 +1,15 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Calendar, Mail, Megaphone, Search, Settings } from "lucide-react";
 
 export const MENU_ITEMS = [
   {
-    title: "Home",
-    url: "#",
-    icon: Home,
+    title: "Email Accounts",
+    url: "email-accounts",
+    icon: Mail,
   },
   {
-    title: "Inbox",
+    title: "Campaigns",
     url: "#",
-    icon: Inbox,
+    icon: Megaphone,
   },
   {
     title: "Calendar",
@@ -23,7 +23,7 @@ export const MENU_ITEMS = [
   },
   {
     title: "Settings",
-    url: "#",
+    url: "settings",
     icon: Settings,
   },
 ];
