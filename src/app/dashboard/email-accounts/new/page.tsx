@@ -3,6 +3,8 @@
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { IoIosArrowBack } from "react-icons/io";
+import BulkEmailAddition from "./_components/BulkEmailAddition";
+import EmailSetup from "./_components/EmailSetup";
 
 export default function AddNewEmailAccounts() {
   const router = useRouter();
@@ -22,6 +24,10 @@ export default function AddNewEmailAccounts() {
       <p className="font-normal text-base mt-2">
         Add your email account to begin your campaign
       </p>
+
+      <BulkEmailAddition />
+
+      <EmailSetup />
     </div>
   );
 }
