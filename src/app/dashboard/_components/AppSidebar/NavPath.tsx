@@ -1,60 +1,32 @@
-"use client";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-  SheetHeader,
-} from "@/components/ui/sheet";
-import { Menu } from "lucide-react";
-import Link from "next/link";
+import { SidebarTrigger } from "@/components/ui/sidebar";
+import { Bell, Megaphone } from "lucide-react";
+import Image from "next/image";
+import AvatarDropdown from "./AvatarDropdown";
+import NotificationDropdown from "./NotificationDropdown";
+import NoticeDropdown from "./NoticeDropdown";
 
-const NavigationPath = () => {
+const line = "/images/Line.png";
+
+export default function NavigationPath() {
   return (
-    <div className="w-full">
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex justify-end">
-        <NavigationMenu>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <Link href="/docs" legacyBehavior passHref>
-                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                  Documentation
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
+    <nav className="flex items-center justify-between mx-6 py-3 border-b border-gray-300">
+      {/* Left Side */}
+      <div className="flex items-center gap-2">
+        <SidebarTrigger />
+        <h2 className="md:text-lg text-base font-semibold">Email Accounts</h2>
       </div>
 
-      {/* Mobile Navigation */}
-      <div className="md:hidden flex justify-end">
-        <Sheet>
-          <SheetTrigger className="p-2 hover:bg-gray-100 rounded-lg" asChild>
-            <Menu className="h-6 w-6" />
-          </SheetTrigger>
-          <SheetContent side="right">
-            <SheetTitle></SheetTitle>
-            <div className="mt-8 flex flex-col gap-4">
-              <Link
-                href="/docs"
-                className="text-lg font-medium hover:text-gray-600 transition-colors"
-              >
-                Documentation
-              </Link>
-            </div>
-          </SheetContent>
-        </Sheet>
+      {/* Right Side */}
+      <div className="flex items-center gap-6">
+        <NoticeDropdown />
+
+        <NotificationDropdown />
+
+        <Image src={line} alt="Background" width={2} height={4} />
+
+        {/* User Avatar */}
+        <AvatarDropdown />
       </div>
-    </div>
+    </nav>
   );
-};
-
-export default NavigationPath;
+}
