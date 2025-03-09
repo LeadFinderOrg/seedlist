@@ -1,0 +1,140 @@
+name: Seedlist deployment
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+
+      - name: Cache Next.js Build
+        uses: actions/cache@v3
+        with:
+          path: |
+            .next/cache
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            ${{ runner.os }}-nextjs-
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Create .env File
+        run: echo "${{ secrets.ENV_FILE }}" > .env
+        
+      - name: Build Application
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Prepare Deploy Files
+        run: |
+          tar czf deploy.tar.gz .next package.json package-lock.json next.config.mjs public .env
+        
+      - name: Copy Build and Deploy
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          source: "deploy.tar.gz"
+          target: "/root/app/seedlist"
+          strip_components: 0
+
+      - name: Deploy and Restart Application
+        if: github.ref == 'refs/heads/main'
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
+          script: |
+            # Create required directories with proper permissions
+            mkdir -p /var/log/seedlist-frontend
+            chmod 755 /var/log/seedlist-frontend
+            mkdir -p /root/app/seedlist/build
+
+            # Cleanup old build if exists
+            rm -rf /root/app/seedlist/build/*
+
+            # Extract new build
+            cd /root/app/seedlist
+            tar xzf deploy.tar.gz -C build/
+            rm deploy.tar.gz
+
+            # Install production dependencies
+            cd /root/app/seedlist/build
+            npm ci --production || {
+              echo "Failed to install dependencies"
+              exit 1
+            }
+
+            # Update service file
+            cat << EOF > /etc/systemd/system/seedlist-frontend.service
+            [Unit]
+            Description=Seedlist frontend Application Service
+            After=network.target
+            
+            [Service]
+            Type=simple
+            ExecStart=/usr/bin/npm start
+            WorkingDirectory=/root/app/seedlist/build
+            User=root
+            Group=root
+            Restart=on-failure
+            RestartSec=10
+            StandardOutput=append:/var/log/seedlist-frontend/app.log
+            StandardError=append:/var/log/seedlist-frontend/error.log
+            
+            # Environment variables
+            Environment=NODE_ENV=production
+            Environment=PORT=3003
+            Environment=NEXT_TELEMETRY_DISABLED=1
+            
+            # Resource limits
+            LimitNOFILE=4096
+            
+            # Ensure clean shutdown
+            TimeoutStopSec=30
+            
+            [Install]
+            WantedBy=multi-user.target
+            EOF
+
+            # Ensure proper permissions on service file
+            chmod 644 /etc/systemd/system/seedlist-frontend.service
+
+            # Reload systemd and restart service
+            systemctl daemon-reload
+            systemctl enable seedlist-frontend
+            systemctl restart seedlist-frontend
+
+            # Wait a bit for service to stabilize
+            sleep 5
+
+            # Enhanced status check
+            systemctl is-active seedlist-frontend || {
+                echo "Service failed to start. Checking logs..."
+                journalctl -u seedlist-frontend -n 50
+                systemctl status seedlist-frontend
+                tail -n 50 /var/log/seedlist-frontend/error.log
+                exit 1
+            }
+
+            echo "Deployment completed successfully"

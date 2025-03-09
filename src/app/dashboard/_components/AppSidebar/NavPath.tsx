@@ -1,9 +1,10 @@
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Bell, Megaphone } from "lucide-react";
 import Image from "next/image";
+
+import { SidebarTrigger } from "@/components/ui/sidebar";
+
 import AvatarDropdown from "./AvatarDropdown";
-import NotificationDropdown from "./NotificationDropdown";
 import NoticeDropdown from "./NoticeDropdown";
+import NotificationDropdown from "./NotificationDropdown";
 
 const line = "/images/Line.png";
 
