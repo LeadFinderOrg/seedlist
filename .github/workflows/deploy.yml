@@ -42,7 +42,7 @@ jobs:
 
       - name: Prepare Deploy Files
         run: |
-          tar czf deploy.tar.gz .next package.json package-lock.json next.config.mjs public .env
+          tar czf deploy.tar.gz .next package.json package-lock.json next.config.ts public .env
         
       - name: Copy Build and Deploy
         if: github.ref == 'refs/heads/main'
