@@ -1,4 +1,7 @@
-"use client";
+import Image from "next/image";
+import Link from "next/link";
+
+import { ChevronUp, User2 } from "lucide-react";
 
 import {
   DropdownMenu,
@@ -17,16 +20,14 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+
 import { MENU_ITEMS } from "@/utils/constants/menu-items";
-import { ChevronUp, User2 } from "lucide-react";
-import Link from "next/link";
 
 const seedListLogo = "/images/SeedlistLogo.png";
-import Image from "next/image";
 
 export function AppSidebar() {
   return (
-    <Sidebar>
+    <Sidebar collapsible="icon" variant="sidebar">
       <SidebarHeader>
         <Image src={seedListLogo} alt="SeedList Logo" width={120} height={40} />
       </SidebarHeader>
@@ -36,13 +37,14 @@ export function AppSidebar() {
             <SidebarMenu>
               {MENU_ITEMS.map((item) => {
                 return (
-                  <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
+                  <SidebarMenuItem
+                    key={item.title}
+                    className="min-w-9 min-h-9 my-1"
+                  >
+                    <SidebarMenuButton asChild tooltip={item.title}>
                       <Link href={item.url}>
-                        <div className="flex items-center space-x-2">
-                          <item.icon className="w-5 h-5" />
-                          <span>{item.title}</span>
-                        </div>
+                        <item.icon />
+                        <span>{item.title}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>

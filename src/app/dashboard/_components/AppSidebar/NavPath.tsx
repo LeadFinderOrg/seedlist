@@ -10,7 +10,7 @@ const line = "/images/Line.png";
 
 export default function NavigationPath() {
   return (
-    <nav className="flex items-center justify-between mx-6 py-3 border-b border-gray-300">
+    <nav className="flex items-center justify-between mx-6 py-1 border-b border-gray-300">
       {/* Left Side */}
       <div className="flex items-center gap-2">
         <SidebarTrigger />
