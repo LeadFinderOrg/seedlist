@@ -5,14 +5,13 @@ import {
     DialogTitle
 } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
-import { Copy, Video } from "lucide-react"
-import GoogleIcon from "./GoogleIcon"
+import { Video } from "lucide-react"
 
-interface GoogleOAuthModalProps {
+interface AppPasswordModalProps {
     onSuccess: () => void;
 }
 
-const GoogleOAuthModal: React.FC<GoogleOAuthModalProps> = ({ onSuccess }) => {
+const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
 
     return (
         <DialogContent className="max-w-xl">
@@ -40,14 +39,6 @@ const GoogleOAuthModal: React.FC<GoogleOAuthModalProps> = ({ onSuccess }) => {
                     <span>Use the following client id to search for Seedlist:</span>
                 </li>
 
-                <div className="mt-2 border border-gray-300 rounded-md bg-gray-100">
-                    <div className="flex items-center justify-between p-2">
-                        <p className="text-gray-600">Client id here</p>
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-gray-500">
-                            <Copy />
-                        </Button>
-                    </div>
-                </div>
 
                 <li className="flex gap-2">
                     <span className="font-medium">4.</span>
@@ -67,13 +58,8 @@ const GoogleOAuthModal: React.FC<GoogleOAuthModalProps> = ({ onSuccess }) => {
                     </Button>
                 </DialogClose>
 
-                <Button variant="outline" className="border-gray-200 hover:bg-gray-50 rounded-md px-4"
-                    onClick={onSuccess}>
-
-                    <div className="flex items-center gap-2">
-                        <GoogleIcon />
-                        Login with Email
-                    </div>
+                <Button variant="primary" onClick={onSuccess}>
+                    Connect
                 </Button>
             </div>
 
@@ -81,4 +67,4 @@ const GoogleOAuthModal: React.FC<GoogleOAuthModalProps> = ({ onSuccess }) => {
     )
 }
 
-export default GoogleOAuthModal
+export default AppPasswordModal
