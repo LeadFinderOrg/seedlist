@@ -8,18 +8,38 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Eye, EyeOff, Video } from "lucide-react";
 import { useState } from "react";
+import { z } from "zod";
+import { useForm } from 'react-hook-form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 
 interface AppPasswordModalProps {
     onSuccess: () => void;
 }
 
-const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
+const formFields = z.object({
+    firstName: z.string().min(1, 'First name is required'),
+    lastName: z.string().min(1, 'Last name is required'),
+    email: z.string().email('Invalid email address'),
+    appPassword: z.string().min(1, 'App password is required'),
+});
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
+
+    const form = useForm({
+        resolver: zodResolver(formFields),
+        defaultValues: {
+            firstName: '',
+            lastName: '',
+            email: '',
+            appPassword: '',
+        }
+    });
+
+    const onSubmit = (values) => {
+        console.log(values);
+    };
 
     return (
         <DialogContent className="max-w-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
@@ -59,74 +79,97 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
                 <a href="#" className="text-blue-500 text-sm">See a tutorial video</a>
             </div>
 
-            <div className="grid grid-cols-2 gap-4 mt-2">
-                <div>
-                    <label className="block text-sm font-medium">First Name</label>
-                    <Input
-                        type="text"
-                        placeholder="Enter first name"
-                        className="pl-4 mt-1"
-                        value={firstName}
-                        onChange={(e) => setFirstName(e.target.value)}
+            <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <FormField
+                            control={form.control}
+                            name="firstName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>First Name</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter first name" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="lastName"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Last Name</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Enter last name" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                    </div>
+
+                    <FormField
+                        control={form.control}
+                        name="email"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Email</FormLabel>
+                                <FormControl>
+                                    <Input placeholder="Enter email" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
                     />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium">Last Name</label>
-                    <Input
-                        type="text"
-                        placeholder="Enter last name"
-                        className="pl-4 mt-1"
-                        value={lastName}
-                        onChange={(e) => setLastName(e.target.value)}
+
+
+
+                    <FormField
+                        control={form.control}
+                        name="appPassword"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>App Password</FormLabel>
+                                <FormControl>
+                                    <div className="relative">
+                                        <Input
+                                            type={showPassword ? "text" : "password"}
+                                            placeholder="Enter App password"
+                                            {...field}
+                                        />
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="icon"
+                                            className="absolute right-0 top-0 h-full px-3"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                        >
+                                            {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                                        </Button>
+                                    </div>
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
                     />
-                </div>
-            </div>
-
-            {/* Email Input */}
-            <div>
-                <label className="block text-sm font-medium">Email</label>
-                <Input
-                    type="email"
-                    placeholder="Enter email"
-                    className="pl-4 mt-1"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </div>
 
 
-            {/* Password Input */}
-            <div>
-                <label className="block text-sm font-medium">App Password</label>
-                <div className="relative flex items-center mt-1">
-                    <Input
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter app password"
-                        className="pl-4"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3 text-slate-800"
-                    >
-                        {showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
-                    </button>
-                </div>
-            </div>
 
-            <div className="flex justify-end gap-3 mt-6">
-                <DialogClose asChild>
-                    <Button variant="default" >
-                        Cancel
-                    </Button>
-                </DialogClose>
+                    <div className="flex justify-end gap-3 !mt-8">
+                        <DialogClose asChild>
+                            <Button variant="default" >
+                                Cancel
+                            </Button>
+                        </DialogClose>
 
-                <Button variant="primary" onClick={onSuccess}>
-                    Connect
-                </Button>
-            </div>
+                        <Button variant="primary" type="submit">
+                            Connect
+                        </Button>
+                    </div>
+                </form>
+            </Form>
 
         </DialogContent>
     )
