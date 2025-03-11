@@ -13,7 +13,7 @@ interface ImapModalProps {
 const ImapModal: React.FC<ImapModalProps> = ({ onSuccess }) => {
 
     return (
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl max-h-[calc(100vh-4rem)] overflow-y-auto">
             <DialogTitle className="text-xl font-medium">Add new sender email</DialogTitle>
 
             <h3 className="text-base font-normal mt-2">Connect your custom account (Configure IMAP + SMTP)</h3>

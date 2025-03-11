@@ -1,11 +1,13 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
     DialogClose,
     DialogContent,
     DialogTitle
-} from "@/components/ui/dialog"
-import { Separator } from "@/components/ui/separator"
-import { Video } from "lucide-react"
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
+import { Eye, EyeOff, Video } from "lucide-react";
+import { useState } from "react";
 
 interface AppPasswordModalProps {
     onSuccess: () => void;
@@ -13,8 +15,14 @@ interface AppPasswordModalProps {
 
 const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+
     return (
-        <DialogContent className="max-w-xl">
+        <DialogContent className="max-w-xl max-h-[calc(100vh-4rem)] overflow-y-auto">
             <DialogTitle className="text-xl font-medium">Add new sender email</DialogTitle>
 
             <h3 className="text-base font-normal mt-2">Google OAuth (one click login)</h3>
@@ -49,6 +57,63 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
             <div className="flex items-center gap-2 mt-6">
                 <Video className="h-5 w-5 text-blue-500" />
                 <a href="#" className="text-blue-500 text-sm">See a tutorial video</a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mt-2">
+                <div>
+                    <label className="block text-sm font-medium">First Name</label>
+                    <Input
+                        type="text"
+                        placeholder="Enter first name"
+                        className="pl-4 mt-1"
+                        value={firstName}
+                        onChange={(e) => setFirstName(e.target.value)}
+                    />
+                </div>
+                <div>
+                    <label className="block text-sm font-medium">Last Name</label>
+                    <Input
+                        type="text"
+                        placeholder="Enter last name"
+                        className="pl-4 mt-1"
+                        value={lastName}
+                        onChange={(e) => setLastName(e.target.value)}
+                    />
+                </div>
+            </div>
+
+            {/* Email Input */}
+            <div>
+                <label className="block text-sm font-medium">Email</label>
+                <Input
+                    type="email"
+                    placeholder="Enter email"
+                    className="pl-4 mt-1"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+            </div>
+
+
+            {/* Password Input */}
+            <div>
+                <label className="block text-sm font-medium">App Password</label>
+                <div className="relative flex items-center mt-1">
+                    <Input
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter app password"
+                        className="pl-4"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3 text-slate-800"
+                    >
+                        {showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+                    </button>
+                </div>
             </div>
 
             <div className="flex justify-end gap-3 mt-6">
