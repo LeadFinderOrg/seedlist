@@ -28,14 +28,14 @@ const NotificationDropdown = () => {
         </div>
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="flex items-start space-x-2 hover:bg-gray-100 px-3 py-2 rounded-md">
+        <DropdownMenuItem className="flex items-start space-x-2 hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer">
           <div className="h-2 w-2 rounded-full bg-red-500 mt-2" />
           <span>New notification here</span>
         </DropdownMenuItem>
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuItem className="flex items-start space-x-2 hover:bg-gray-100 px-3 py-2 rounded-md">
+        <DropdownMenuItem className="flex items-start space-x-2 hover:bg-gray-100 px-3 py-2 rounded-md cursor-pointer">
           <div className="h-2 w-2 rounded-full bg-red-500 mt-2" />
           <span>New notification here</span>
         </DropdownMenuItem>
