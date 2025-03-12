@@ -51,7 +51,8 @@ const formSchema = z.object({
 
 const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showSmtpPassword, setShowSmtpPassword] = useState<boolean>(false);
+    const [showImapPassword, setShowImapPassword] = useState<boolean>(false);
 
     const form = useForm({
         resolver: zodResolver(formSchema),
@@ -74,7 +75,8 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
     useEffect(() => {
         if (!open) {
             form.reset();
-            setShowPassword(false);
+            setShowSmtpPassword(false);
+            setShowImapPassword(false);
         }
     }, [open, form]);
 
@@ -177,7 +179,7 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
                                     <FormControl>
                                         <div className="relative">
                                             <Input
-                                                type={showPassword ? "text" : "password"}
+                                                type={showSmtpPassword ? "text" : "password"}
                                                 placeholder="Enter SMTP password"
                                                 {...field}
                                             />
@@ -186,9 +188,9 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
                                                 variant="ghost"
                                                 size="icon"
                                                 className="absolute right-0 top-0 h-full px-3"
-                                                onClick={() => setShowPassword(!showPassword)}
+                                                onClick={() => setShowSmtpPassword(!showSmtpPassword)}
                                             >
-                                                {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                                                {showSmtpPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                                             </Button>
                                         </div>
                                     </FormControl>
@@ -249,7 +251,7 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
                                     <FormControl>
                                         <div className="relative">
                                             <Input
-                                                type={showPassword ? "text" : "password"}
+                                                type={showImapPassword ? "text" : "password"}
                                                 placeholder="Enter IMAP password"
                                                 {...field}
                                             />
@@ -258,9 +260,9 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
                                                 variant="ghost"
                                                 size="icon"
                                                 className="absolute right-0 top-0 h-full px-3"
-                                                onClick={() => setShowPassword(!showPassword)}
+                                                onClick={() => setShowImapPassword(!showImapPassword)}
                                             >
-                                                {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                                                {showImapPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
                                             </Button>
                                         </div>
                                     </FormControl>
