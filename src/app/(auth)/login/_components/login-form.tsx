@@ -1,16 +1,14 @@
 "use client";
 
+import GoogleIcon from "@/common/GoogleIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaRegEnvelope } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { LuLock } from "react-icons/lu";
 import { z } from "zod";
 
 const loginBackground = "/images/loginBackground.png";
@@ -73,7 +71,7 @@ export default function LoginForm() {
           <div className="mt-6">
             <label className="block text-sm font-medium">Email</label>
             <div className="relative flex items-center mt-1">
-              <FaRegEnvelope className="absolute left-3 text-slate-800" />
+              <Mail size={18} color="#1e293b" className="absolute left-3" />
               <Input
                 type="email"
                 placeholder="Enter email"
@@ -92,7 +90,7 @@ export default function LoginForm() {
           <div className="mt-4">
             <label className="block text-sm font-medium">Password</label>
             <div className="relative flex items-center mt-1">
-              <LuLock className="absolute left-3 text-slate-800" />
+              <Lock size={18} color="#1e293b" className="absolute left-3" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter password"
@@ -104,7 +102,7 @@ export default function LoginForm() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 text-slate-800"
               >
-                {showPassword ? <FiEye /> : <FiEyeOff />}
+                {showPassword ? <Eye size={20} color="#1e293b" /> : <EyeOff size={20} color="#1e293b" />}
               </button>
             </div>
             {errors.password && (
@@ -145,7 +143,7 @@ export default function LoginForm() {
         </div>
 
         <Button className="w-full" variant="outline" size="lg">
-          <FcGoogle className="text-xl" />
+          <GoogleIcon />
           Sign In with Google
         </Button>
 

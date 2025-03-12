@@ -1,16 +1,14 @@
 "use client";
 
+import GoogleIcon from "@/common/GoogleIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FaRegEnvelope } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { LuLock, LuUser } from "react-icons/lu";
 import { z } from "zod";
 
 const loginBackground = "/images/loginBackground.png";
@@ -86,7 +84,7 @@ export const SignupForm = () => {
             <div>
               <label className="block text-sm font-medium">First Name</label>
               <div className="relative flex items-center mt-1">
-                <LuUser className="absolute left-3 text-slate-800" />
+                <User size={18} color="#1e293b" className="absolute left-3" />
                 <Input
                   type="text"
                   placeholder="Enter first name"
@@ -103,7 +101,7 @@ export const SignupForm = () => {
             <div>
               <label className="block text-sm font-medium">Last Name</label>
               <div className="relative flex items-center mt-1">
-                <LuUser className="absolute left-3 text-slate-800" />
+                <User size={18} color="#1e293b" className="absolute left-3" />
                 <Input
                   type="text"
                   placeholder="Enter last name"
@@ -123,7 +121,7 @@ export const SignupForm = () => {
           <div className="mt-3">
             <label className="block text-sm font-medium">Email</label>
             <div className="relative flex items-center mt-1">
-              <FaRegEnvelope className="absolute left-3 text-slate-800" />
+              <Mail size={18} color="#1e293b" className="absolute left-3" />
               <Input
                 type="email"
                 placeholder="Enter email"
@@ -142,7 +140,7 @@ export const SignupForm = () => {
           <div className="mt-3">
             <label className="block text-sm font-medium">Password</label>
             <div className="relative flex items-center mt-1">
-              <LuLock className="absolute left-3 text-slate-800" />
+              <Lock size={18} color="#1e293b" className="absolute left-3" />
               <Input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter password"
@@ -154,7 +152,7 @@ export const SignupForm = () => {
                 onClick={() => setShowPassword(!showPassword)}
                 className="absolute right-3 text-slate-800"
               >
-                {showPassword ? <FiEye /> : <FiEyeOff />}
+                {showPassword ? <Eye size={20} color="#1e293b" /> : <EyeOff size={20} color="#1e293b" />}
               </button>
             </div>
             {errors.password && (
@@ -170,7 +168,7 @@ export const SignupForm = () => {
               Confirm Password
             </label>
             <div className="relative flex items-center mt-1">
-              <LuLock className="absolute left-3 text-slate-800" />
+              <Lock size={18} color="#1e293b" className="absolute left-3" />
               <Input
                 type={showConfirmPassword ? "text" : "password"}
                 placeholder="Re-enter password"
@@ -182,7 +180,7 @@ export const SignupForm = () => {
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 className="absolute right-3 text-slate-800"
               >
-                {showConfirmPassword ? <FiEye /> : <FiEyeOff />}
+                {showConfirmPassword ? <Eye size={20} color="#1e293b" /> : <EyeOff size={20} color="#1e293b" />}
               </button>
             </div>
             {errors.confirmPassword && (
@@ -216,7 +214,7 @@ export const SignupForm = () => {
         </div>
 
         <Button className="w-full" variant="outline" size="lg">
-          <FcGoogle className="text-xl" />
+          <GoogleIcon />
           Sign Up with Google
         </Button>
         <p className="mt-4 text-xs text-slate-700">

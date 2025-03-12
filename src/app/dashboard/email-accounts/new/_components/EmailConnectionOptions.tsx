@@ -3,9 +3,9 @@
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { AtSign, Key } from "lucide-react";
 import AppPasswordModal from "./AppPasswordModal";
-import GoogleIcon from "./GoogleIcon";
+import GoogleIcon from "../../../../../common/GoogleIcon";
 import GoogleOAuthModal from "./GoogleOAuthModal";
-import OutlookIcon from "./OutlookIcon";
+import OutlookIcon from "../../../../../common/OutlookIcon";
 import { useState } from "react";
 import OutlookModal from "./OutlookModal";
 import ImapModal from "./ImapModal";

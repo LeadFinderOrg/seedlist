@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
 import { Copy, Video } from "lucide-react"
-import GoogleIcon from "./GoogleIcon"
+import GoogleIcon from "../../../../../common/GoogleIcon"
 
 interface GoogleOAuthModalProps {
     onSuccess: () => void;
