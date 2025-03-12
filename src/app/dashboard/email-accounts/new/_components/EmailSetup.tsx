@@ -1,5 +1,5 @@
+import { CircleCheckBig } from "lucide-react";
 import Image from "next/image";
-import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const google = "/images/google.png";
 const microsoftOffice = "/images/microsoftOffice.png";
@@ -50,29 +50,29 @@ export default function EmailSetup() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <section className="space-y-4 text-slate-600">
               <div className="flex items-center gap-2">
-                <IoMdCheckmarkCircleOutline className="text-xl" />
+                <CircleCheckBig size={22} color="#94a3b8" />
                 <h1>Automatic OAuth Setup</h1>
               </div>
               <div className="flex items-center gap-2">
-                <IoMdCheckmarkCircleOutline className="text-xl" />
+                <CircleCheckBig size={22} color="#94a3b8" />
                 <h1>Automatic reconnects</h1>
               </div>
               <div className="flex items-center gap-2">
-                <IoMdCheckmarkCircleOutline className="text-xl" />
+                <CircleCheckBig size={22} color="#94a3b8" />
                 <h1>US IPs only</h1>
               </div>
             </section>
             <section className="space-y-4 text-slate-600">
               <div className="flex items-center gap-2">
-                <IoMdCheckmarkCircleOutline className="text-xl" />
+                <CircleCheckBig size={22} color="#94a3b8" />
                 <h1>Connect unlimited domains</h1>
               </div>
               <div className="flex items-center gap-2">
-                <IoMdCheckmarkCircleOutline className="text-xl" />
+                <CircleCheckBig size={22} color="#94a3b8" />
                 <h1>Email deliverability optimized</h1>
               </div>
               <div className="flex items-center gap-2">
-                <IoMdCheckmarkCircleOutline className="text-xl" />
+                <CircleCheckBig size={22} color="#94a3b8" />
                 <h1>Starting at $4/month</h1>
               </div>
             </section>
