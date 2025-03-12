@@ -42,7 +42,11 @@ const EmailConnectionOptions = () => {
                                 <Key />
                             </div>
                         </DialogTrigger>
-                        <AppPasswordModal onSuccess={() => setAppPasswordDialogOpen(false)} />
+
+                        <AppPasswordModal
+                            open={appPasswordDialogOpen}
+                            onSuccess={() => setAppPasswordDialogOpen(false)} />
+
                     </Dialog>
                     <p className="font-medium text-center text-base">App Password</p>
                     <p className="text-sm text-gray-500 text-center">SMTP Setup</p>
@@ -72,7 +76,11 @@ const EmailConnectionOptions = () => {
                                 <AtSign />
                             </div>
                         </DialogTrigger>
-                        <ImapModal onSuccess={() => setImapDialogOpen(false)} />
+
+                        <ImapModal
+                            open={imapDialogOpen}
+                            onSuccess={() => setImapDialogOpen(false)} />
+
                     </Dialog>
                     <p className="font-medium text-center text-base">IMAP/SMTP</p>
                     <p className="text-sm text-gray-500 text-center">Any Provider</p>

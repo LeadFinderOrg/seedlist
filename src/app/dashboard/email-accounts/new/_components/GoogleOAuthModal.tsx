@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button"
 import {
     DialogClose,
     DialogContent,
+    DialogDescription,
     DialogTitle
 } from "@/components/ui/dialog"
 import { Separator } from "@/components/ui/separator"
@@ -19,9 +20,9 @@ const GoogleOAuthModal: React.FC<GoogleOAuthModalProps> = ({ onSuccess }) => {
             <DialogTitle className="text-xl font-medium">Add new sender email</DialogTitle>
 
             <h3 className="text-base font-normal mt-2">Google OAuth (one click login)</h3>
-            <p className="text-sm text-slate-800 ">
+            <DialogDescription className="text-sm text-slate-800">
                 These setup steps are a one-time requirement for your Google Workspace administrator
-            </p>
+            </DialogDescription>
             <Separator />
 
             <ol className="space-y-4 text-sm">

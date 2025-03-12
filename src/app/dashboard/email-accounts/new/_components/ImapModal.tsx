@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
     DialogClose,
     DialogContent,
+    DialogDescription,
     DialogTitle
 } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -11,26 +12,44 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 import { z } from "zod";
 
 interface ImapModalProps {
     onSuccess: () => void;
+    open: boolean;
+}
+
+interface FormValues {
+    firstName: string;
+    lastName: string;
+    email: string;
+    smtpUsername: string;
+    smtpPassword: string;
+    smtpHost: string;
+    smtpPort: string;
+    imapUsername: string;
+    imapPassword: string;
+    imapHost: string;
+    imapPort: string;
 }
 
 const formSchema = z.object({
-    firstName: z.string().min(1, 'First name is required'),
-    lastName: z.string().min(1, 'Last name is required'),
+    firstName: z.string().min(2, 'First name is required'),
+    lastName: z.string().min(2, 'Last name is required'),
     email: z.string().email('Invalid email address'),
-    smtpUsername: z.string().min(1, 'SMTP username is required'),
-    smtpPassword: z.string().min(1, 'SMTP password is required'),
+    smtpUsername: z.string().min(2, 'SMTP username is required'),
+    smtpPassword: z.string().min(4, 'SMTP password is required'),
     smtpHost: z.string().min(1, 'SMTP host is required'),
     smtpPort: z.string().min(1, 'SMTP port is required'),
-    imapUsername: z.string().min(1, 'IMAP username is required'),
+    imapUsername: z.string().min(2, 'IMAP username is required'),
+    imapPassword: z.string().min(4, 'IMAP password is required'),
+    imapHost: z.string().min(1, 'IMAP host is required'),
+    imapPort: z.string().min(1, 'IMAP port is required'),
 });
 
-const ImapModal: React.FC<ImapModalProps> = ({ onSuccess }) => {
+const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -45,19 +64,30 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess }) => {
             smtpHost: '',
             smtpPort: '',
             imapUsername: '',
+            imapPassword: '',
+            imapHost: '',
+            imapPort: '',
         },
     });
 
-    const onSubmit = (values) => {
+
+    useEffect(() => {
+        if (!open) {
+            form.reset();
+            setShowPassword(false);
+        }
+    }, [open, form]);
+
+    const onSubmit = (values: FormValues) => {
         console.log(values);
+        onSuccess();
     };
 
 
     return (
         <DialogContent className="max-w-2xl max-h-[calc(100vh-4rem)] overflow-y-auto">
             <DialogTitle className="text-xl font-medium">Add new sender email</DialogTitle>
-
-            <h3 className="text-base font-normal mt-2">Connect your custom account (Configure IMAP + SMTP)</h3>
+            <DialogDescription className="text-base font-normal text-black my-2">Connect your custom account (Configure IMAP + SMTP)</DialogDescription>
 
             <ol className="space-y-4 text-sm">
                 <li className="flex gap-2">
@@ -209,6 +239,64 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess }) => {
                                 </FormItem>
                             )}
                         />
+
+                        <FormField
+                            control={form.control}
+                            name="imapPassword"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>IMAP Password</FormLabel>
+                                    <FormControl>
+                                        <div className="relative">
+                                            <Input
+                                                type={showPassword ? "text" : "password"}
+                                                placeholder="Enter IMAP password"
+                                                {...field}
+                                            />
+                                            <Button
+                                                type="button"
+                                                variant="ghost"
+                                                size="icon"
+                                                className="absolute right-0 top-0 h-full px-3"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                            >
+                                                {showPassword ? <Eye className="h-4 w-4" /> : <EyeOff className="h-4 w-4" />}
+                                            </Button>
+                                        </div>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <FormField
+                                control={form.control}
+                                name="imapHost"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>IMAP Host</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="server.imap.mail.com" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <FormField
+                                control={form.control}
+                                name="imapPort"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>IMAP Port</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="587" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                        </div>
 
                         <div className="flex justify-end gap-3 !mt-8">
                             <DialogClose asChild>

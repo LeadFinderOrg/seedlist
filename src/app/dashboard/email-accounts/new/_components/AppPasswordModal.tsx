@@ -2,19 +2,28 @@ import { Button } from "@/components/ui/button";
 import {
     DialogClose,
     DialogContent,
+    DialogDescription,
     DialogTitle
 } from "@/components/ui/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { Eye, EyeOff, Video } from "lucide-react";
-import { useState } from "react";
-import { z } from "zod";
-import { useForm } from 'react-hook-form';
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Eye, EyeOff, Video } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useForm } from 'react-hook-form';
+import { z } from "zod";
 
 interface AppPasswordModalProps {
     onSuccess: () => void;
+    open: boolean;
+}
+
+interface FormValues {
+    firstName: string;
+    lastName: string;
+    email: string;
+    appPassword: string;
 }
 
 const formFields = z.object({
@@ -24,7 +33,7 @@ const formFields = z.object({
     appPassword: z.string().min(1, 'App password is required'),
 });
 
-const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
+const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess, open }) => {
     const [showPassword, setShowPassword] = useState<boolean>(false);
 
     const form = useForm({
@@ -37,8 +46,17 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
         }
     });
 
-    const onSubmit = (values) => {
+    useEffect(() => {
+        if (!open) {
+            form.reset();
+            setShowPassword(false);
+        }
+    }, [open, form]);
+
+
+    const onSubmit = (values: FormValues) => {
         console.log(values);
+        onSuccess();
     };
 
     return (
@@ -46,9 +64,7 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
             <DialogTitle className="text-xl font-medium">Add new sender email</DialogTitle>
 
             <h3 className="text-base font-normal mt-2">Google OAuth (one click login)</h3>
-            <p className="text-sm text-slate-800 ">
-                These setup steps are a one-time requirement for your Google Workspace administrator
-            </p>
+            <DialogDescription className="text-sm text-slate-800">This dialog allows you to set up your IMAP/SMTP connection.</DialogDescription>
             <Separator />
 
             <ol className="space-y-4 text-sm">
@@ -124,8 +140,6 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
                         )}
                     />
 
-
-
                     <FormField
                         control={form.control}
                         name="appPassword"
@@ -154,8 +168,6 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess }) => {
                             </FormItem>
                         )}
                     />
-
-
 
                     <div className="flex justify-end gap-3 !mt-8">
                         <DialogClose asChild>

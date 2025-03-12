@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import {
     DialogClose,
     DialogContent,
+    DialogDescription,
     DialogTitle
 } from "@/components/ui/dialog";
 import { ChevronRight, Video } from "lucide-react";
@@ -17,9 +18,9 @@ const OutlookModal: React.FC<OutlookModalProps> = ({ onSuccess }) => {
             <DialogTitle className="text-xl font-medium">Add new sender email</DialogTitle>
 
             <h3 className="text-base font-normal mt-2">Connect your Microsoft Account (Office 365 / Outlook)</h3>
-            <p className="text-sm text-slate-800">
+            <DialogDescription className="text-sm text-slate-800">
                 First, let’s enable SMTP access for your Microsoft account
-            </p>
+            </DialogDescription>
 
             <div className="mt-2 bg-gray-100 p-4 rounded-lg">
                 <h3 className="text-base font-normal mb-4">Microsoft accounts purchased directly from Microsoft</h3>
