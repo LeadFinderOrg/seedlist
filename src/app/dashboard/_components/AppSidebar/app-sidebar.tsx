@@ -13,7 +13,7 @@ const smallLogo = "/images/smallLogo.png";
 
 export function AppSidebar() {
   return (
-    <aside className="h-screen fixed left-0 top-0 z-40 flex md:w-20 w-16 flex-col bg-blue-50">
+    <aside className="h-screen fixed left-0 top-0 z-40 flex md:w-20 w-16 flex-col bg-blue-50 border-r border-gray-300">
       <div className="flex h-16 items-center justify-center">
         <Link href="/" className="flex items-center justify-center">
           <Image src={smallLogo} alt="SeedList Logo" width={30} height={30} />
