@@ -1,29 +1,29 @@
-import { Calendar, Mail, Megaphone, Search, Settings } from "lucide-react";
+import { ChartLine, Inbox, List, Mail, Send } from "lucide-react";
 
 export const MENU_ITEMS = [
   {
-    title: "Email Accounts",
-    url: "email-accounts",
-    icon: Mail,
+    href: "/dashboard/email-accounts",
+    icon: <Mail color="#1d4ed8" strokeWidth={2.25} />,
+    label: "Mail",
   },
   {
-    title: "Campaigns",
-    url: "#",
-    icon: Megaphone,
+    href: "/dashboard/campaigns",
+    icon: <Send color="#1d4ed8" strokeWidth={2.25} />,
+    label: "Campaigns",
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    href: "/dashboard/settings",
+    icon: <List color="#1d4ed8" strokeWidth={2.25} />,
+    label: "List",
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    href: "/dashboard/packages",
+    icon: <Inbox color="#1d4ed8" strokeWidth={2.25} />,
+    label: "Packages",
   },
   {
-    title: "Settings",
-    url: "settings",
-    icon: Settings,
+    href: "/dashboard/analytics",
+    icon: <ChartLine color="#1d4ed8" strokeWidth={2.25} />,
+    label: "Analytics",
   },
 ];

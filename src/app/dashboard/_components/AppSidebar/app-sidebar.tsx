@@ -1,88 +1,41 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
-import { ChevronUp, User2 } from "lucide-react";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar";
+import { Settings } from "lucide-react";
 
 import { MENU_ITEMS } from "@/utils/constants/menu-items";
 
-const seedListLogo = "/images/SeedlistLogo.png";
+import NavItem from "./NavItem";
+
+const smallLogo = "/images/smallLogo.png";
 
 export function AppSidebar() {
   return (
-    <Sidebar collapsible="icon" variant="sidebar">
-      <SidebarHeader>
-        <Image src={seedListLogo} alt="SeedList Logo" width={120} height={40} />
-      </SidebarHeader>
-      <SidebarContent>
-        <SidebarGroup>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {MENU_ITEMS.map((item) => {
-                return (
-                  <SidebarMenuItem
-                    key={item.title}
-                    className="min-w-9 min-h-9 my-1"
-                  >
-                    <SidebarMenuButton asChild tooltip={item.title}>
-                      <Link href={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </Link>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                );
-              })}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-      </SidebarContent>
-
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
-                  <User2 /> Username
-                  <ChevronUp className="ml-auto" />
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                side="top"
-                className="w-[--radix-popper-anchor-width]"
-              >
-                <DropdownMenuItem>
-                  <span>Account</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Billing</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <span>Sign out</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
-    </Sidebar>
+    <aside className="h-screen fixed left-0 top-0 z-40 flex md:w-20 w-16 flex-col bg-blue-50 border-r border-gray-300">
+      <div className="flex h-16 items-center justify-center">
+        <Link href="/" className="flex items-center justify-center">
+          <Image src={smallLogo} alt="SeedList Logo" width={30} height={30} />
+        </Link>
+      </div>
+      <div className="flex flex-1 flex-col items-center gap-6 py-4">
+        {MENU_ITEMS.map((item) => (
+          <NavItem
+            key={item.href}
+            href={item.href}
+            icon={item.icon}
+            label={item.label}
+          />
+        ))}
+      </div>
+      <div className="flex flex-col items-center gap-4 py-4 mt-auto">
+        <NavItem
+          href="/settings"
+          icon={<Settings color="#1d4ed8" strokeWidth={2.25} />}
+          label="Settings"
+        />
+      </div>
+    </aside>
   );
 }
