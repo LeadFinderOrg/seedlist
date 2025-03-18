@@ -107,7 +107,7 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
         <p className="p-4 text-center">Loading...</p>
       ) : (
         <>
-          <div className="rounded-md">
+          <div className="mt-6">
             <Table className="border-b border-gray-200">
               <TableHeader className="bg-slate-100">
                 <TableRow>

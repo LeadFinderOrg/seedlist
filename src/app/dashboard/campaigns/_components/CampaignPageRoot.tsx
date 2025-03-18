@@ -2,23 +2,17 @@
 
 import { useRouter } from "next/navigation";
 
-import { CirclePlus, Download } from "lucide-react";
+import { CirclePlus } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
-export interface EmailTableData {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  username: string;
-}
+import CampaignDataTable from "./CampaignTable";
 
 const CampaignPageRoot = () => {
   const router = useRouter();
 
   const handleAddNew = () => {
-    router.push("/dashboard/campaigns/new");
+    router.push("/dashboard/campaigns/add-new");
   };
   return (
     <div>
@@ -26,6 +20,8 @@ const CampaignPageRoot = () => {
         <CirclePlus className="text-xl" />
         Add new
       </Button>
+
+      <CampaignDataTable />
     </div>
   );
 };
