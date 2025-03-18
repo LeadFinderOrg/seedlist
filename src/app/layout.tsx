@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+
+import ReduxProvider from "@/common/redux-provider/ReduxProvider";
+
 import "./globals.css";
 
 // Define the font
@@ -21,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body suppressHydrationWarning className="max-w-full mx-auto">
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   );
