@@ -4,22 +4,22 @@ export const MENU_ITEMS = [
   {
     href: "/dashboard/email-accounts",
     icon: <Mail color="#1d4ed8" strokeWidth={2.25} />,
-    label: "Mail",
+    label: "Email Accounts",
   },
   {
     href: "/dashboard/campaigns",
     icon: <Send color="#1d4ed8" strokeWidth={2.25} />,
-    label: "Campaigns",
+    label: "Campaign",
   },
   {
-    href: "/dashboard/settings",
+    href: "/dashboard/lead-list",
     icon: <List color="#1d4ed8" strokeWidth={2.25} />,
-    label: "List",
+    label: "Lead List",
   },
   {
-    href: "/dashboard/packages",
+    href: "/dashboard/omnibox",
     icon: <Inbox color="#1d4ed8" strokeWidth={2.25} />,
-    label: "Packages",
+    label: "Omnibox",
   },
   {
     href: "/dashboard/analytics",
