@@ -1,10 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function AddCampaign() {
+import { ChevronLeft } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+
+import CampaignCreation from "./_components/CampaignCreation";
+
+export default function AddCampaignPage() {
   const router = useRouter();
 
   const handleBack = () => {
@@ -16,8 +20,7 @@ export default function AddCampaign() {
         <ChevronLeft className="text-xl" />
         Back
       </Button>
-      <h1 className="font-semibold text-xl mt-6"> Add New Campaigns</h1>
-
+      <CampaignCreation />
     </div>
-  )
+  );
 }
