@@ -1,11 +1,11 @@
 import React from "react";
-
 import { X } from "lucide-react";
 
 import {
   Sheet,
   SheetClose,
   SheetContent,
+  SheetDescription,
   SheetHeader,
   SheetTitle
 } from "@/components/ui/sheet";
@@ -13,13 +13,13 @@ import {
 import { EmailTableData } from "./EmailAccountsRoot";
 import NavigationTabs from "./NavigationTabs";
 
-interface EmailAccountSheetProps {
+interface EmailAccountDrawerProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedRow: EmailTableData | null;
 }
 
-const EmailAccountSheet: React.FC<EmailAccountSheetProps> = ({
+const EmailAccountDrawer: React.FC<EmailAccountDrawerProps> = ({
   isOpen,
   onOpenChange,
   selectedRow,
@@ -30,6 +30,8 @@ const EmailAccountSheet: React.FC<EmailAccountSheetProps> = ({
         <div className="flex justify-between items-center mb-4">
           <SheetHeader className="text-left p-0 m-0">
             <SheetTitle>{selectedRow?.email}</SheetTitle>
+            <SheetDescription className="sr-only">
+            </SheetDescription>
           </SheetHeader>
           <SheetClose asChild>
             <X className="h-7 w-7 cursor-pointer p-1 hover:bg-slate-100 rounded-sm" />
@@ -42,4 +44,4 @@ const EmailAccountSheet: React.FC<EmailAccountSheetProps> = ({
   );
 };
 
-export default EmailAccountSheet;
+export default EmailAccountDrawer;

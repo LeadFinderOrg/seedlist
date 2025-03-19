@@ -11,8 +11,7 @@ import {
   ChevronLeft,
   ChevronRight,
   MoreHorizontal,
-  X,
-  Zap,
+  Zap
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -26,8 +25,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import EmailSheet from "./EmailAccountSheet";
-import EmailAccountSheet from "./EmailAccountSheet";
+import EmailAccountDrawer from "./EmailAccountDrawer";
 import { EmailTableData } from "./EmailAccountsRoot";
 
 interface EmailAccountTableProps {
@@ -145,9 +143,9 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
                       </TableHead>
                     ))
                   )}
@@ -226,7 +224,7 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
           </div>
 
           {/* Sheet for displaying row data */}
-          <EmailAccountSheet
+          <EmailAccountDrawer
             isOpen={isSheetOpen}
             onOpenChange={setIsSheetOpen}
             selectedRow={selectedRow}

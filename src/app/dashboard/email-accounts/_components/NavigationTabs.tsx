@@ -2,19 +2,19 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 const NavigationTabs = () => {
     return (
-        <Tabs defaultValue="Warmup" className="w-80">
+        <Tabs defaultValue="warmup" className="w-80">
             <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="Warmup">Warmup</TabsTrigger>
-                <TabsTrigger value="Settings">Settings</TabsTrigger>
-                <TabsTrigger value="Campaigns">Campaigns</TabsTrigger>
+                <TabsTrigger value="warmup">Warmup</TabsTrigger>
+                <TabsTrigger value="settings">Settings</TabsTrigger>
+                <TabsTrigger value="campaigns">Campaigns</TabsTrigger>
             </TabsList>
-            <TabsContent value="Warmup">
+            <TabsContent value="warmup">
                 Warmup
             </TabsContent>
-            <TabsContent value="Settings">
+            <TabsContent value="settings">
                 Settings
             </TabsContent>
-            <TabsContent value="Campaigns">
+            <TabsContent value="campaigns">
                 Campaigns
             </TabsContent>
         </Tabs>
