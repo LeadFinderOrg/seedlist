@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   ColumnDef,
   flexRender,
@@ -5,7 +7,13 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ChevronLeft, ChevronRight, MoreHorizontal, Zap } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  MoreHorizontal,
+  X,
+  Zap,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -18,6 +26,8 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+import EmailSheet from "./EmailAccountSheet";
+import EmailAccountSheet from "./EmailAccountSheet";
 import { EmailTableData } from "./EmailAccountsRoot";
 
 interface EmailAccountTableProps {
@@ -29,6 +39,14 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
   data,
   loading,
 }) => {
+  const [selectedRow, setSelectedRow] = useState<EmailTableData | null>(null);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
+
+  const handleRowClick = (row: EmailTableData) => {
+    setSelectedRow(row);
+    setIsSheetOpen(true);
+  };
+
   const columns: ColumnDef<EmailTableData>[] = [
     {
       id: "select",
@@ -43,11 +61,13 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
         />
       ),
       cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
+        <div onClick={(e) => e.stopPropagation()}>
+          <Checkbox
+            checked={row.getIsSelected()}
+            onCheckedChange={(value) => row.toggleSelected(!!value)}
+            aria-label="Select row"
+          />
+        </div>
       ),
       enableSorting: false,
       enableHiding: false,
@@ -71,7 +91,10 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
     {
       id: "actions",
       cell: () => (
-        <div className="flex items-center justify-end gap-2">
+        <div
+          className="flex items-center justify-end gap-2"
+          onClick={(e) => e.stopPropagation()}
+        >
           <Button variant="ghost" size="icon" className="h-8 w-8">
             <Zap className="h-5 w-5 text-gray-400 hover:text-gray-500" />
           </Button>
@@ -136,7 +159,8 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
                     <TableRow
                       key={row.id}
                       data-state={row.getIsSelected() && "selected"}
-                      className="border-b border-gray-200"
+                      className="border-b border-gray-200 cursor-pointer hover:bg-gray-50"
+                      onClick={() => handleRowClick(row.original)}
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id} className="text-sm">
@@ -200,6 +224,13 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
               </Button>
             </div>
           </div>
+
+          {/* Sheet for displaying row data */}
+          <EmailAccountSheet
+            isOpen={isSheetOpen}
+            onOpenChange={setIsSheetOpen}
+            selectedRow={selectedRow}
+          />
         </>
       )}
     </div>
