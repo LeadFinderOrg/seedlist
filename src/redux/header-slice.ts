@@ -5,7 +5,7 @@ interface HeaderState {
 }
 
 const initialState: HeaderState = {
-    menuTitle: 'Email Accounts',
+    menuTitle: '',
 };
 
 export const headerSlice = createSlice({
