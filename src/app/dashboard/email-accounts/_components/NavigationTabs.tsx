@@ -1,23 +1,25 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import WarmupEmailsChart from './WarmupEmailsChart';
 
 const NavigationTabs = () => {
     return (
-        <Tabs defaultValue="warmup" className="w-80">
-            <TabsList className="grid w-full grid-cols-3">
+        <Tabs defaultValue="warmup">
+            <TabsList className="w-80 grid grid-cols-3">
                 <TabsTrigger value="warmup">Warmup</TabsTrigger>
                 <TabsTrigger value="settings">Settings</TabsTrigger>
                 <TabsTrigger value="campaigns">Campaigns</TabsTrigger>
             </TabsList>
-            <TabsContent value="warmup">
-                Warmup
+            <TabsContent value="warmup" className="w-full">
+                <WarmupEmailsChart />
             </TabsContent>
-            <TabsContent value="settings">
+            <TabsContent value="settings" className="w-full">
                 Settings
             </TabsContent>
-            <TabsContent value="campaigns">
+            <TabsContent value="campaigns" className="w-full">
                 Campaigns
             </TabsContent>
         </Tabs>
+
     );
 };
 
