@@ -1,26 +1,34 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import WarmupEmailsChart from './WarmupEmailsChart';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+import DomainAuthentication from "./DomainAuthentication";
+import HealthScoreChart from "./HealthScoreChart";
+import WarmupEmailsChart from "./WarmupEmailsChart";
+import EmailWarmupStats from "./EmailWarmupStats";
 
 const NavigationTabs = () => {
-    return (
-        <Tabs defaultValue="warmup">
-            <TabsList className="w-80 grid grid-cols-3">
-                <TabsTrigger value="warmup">Warmup</TabsTrigger>
-                <TabsTrigger value="settings">Settings</TabsTrigger>
-                <TabsTrigger value="campaigns">Campaigns</TabsTrigger>
-            </TabsList>
-            <TabsContent value="warmup" className="w-full">
-                <WarmupEmailsChart />
-            </TabsContent>
-            <TabsContent value="settings" className="w-full">
-                Settings
-            </TabsContent>
-            <TabsContent value="campaigns" className="w-full">
-                Campaigns
-            </TabsContent>
-        </Tabs>
-
-    );
+  return (
+    <Tabs defaultValue="warmup">
+      <div className="w-full border-b border-gray-500">
+        <TabsList className="w-80 grid grid-cols-3 mb-4">
+          <TabsTrigger value="warmup">Warmup</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="campaigns">Campaigns</TabsTrigger>
+        </TabsList>
+      </div>
+      <TabsContent value="warmup" className="w-full">
+        <EmailWarmupStats />
+        <DomainAuthentication />
+        <WarmupEmailsChart />
+        <HealthScoreChart />
+      </TabsContent>
+      <TabsContent value="settings" className="w-full">
+        Settings
+      </TabsContent>
+      <TabsContent value="campaigns" className="w-full">
+        Campaigns
+      </TabsContent>
+    </Tabs>
+  );
 };
 
 export default NavigationTabs;

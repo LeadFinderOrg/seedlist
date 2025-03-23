@@ -94,10 +94,10 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
           onClick={(e) => e.stopPropagation()}
         >
           <Button variant="ghost" size="icon" className="h-8 w-8">
-            <Zap className="h-5 w-5 text-gray-400 hover:text-gray-500" />
+          <Zap color="#9CA3AF" />
           </Button>
           <Button variant="ghost" size="icon" className="h-8 w-8">
-            <MoreHorizontal className="h-5 w-5 text-gray-400 hover:text-gray-500" />
+            <MoreHorizontal color="#6D6D6D"  />
           </Button>
         </div>
       ),
