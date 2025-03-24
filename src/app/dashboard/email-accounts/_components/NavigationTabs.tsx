@@ -4,6 +4,7 @@ import DomainAuthentication from "./DomainAuthentication";
 import HealthScoreChart from "./HealthScoreChart";
 import WarmupEmailsChart from "./WarmupEmailsChart";
 import EmailWarmupStats from "./EmailWarmupStats";
+import CampaignsTab from "./CampaignsTab";
 
 const NavigationTabs = () => {
   return (
@@ -25,7 +26,7 @@ const NavigationTabs = () => {
         Settings
       </TabsContent>
       <TabsContent value="campaigns" className="w-full">
-        Campaigns
+        <CampaignsTab />
       </TabsContent>
     </Tabs>
   );
