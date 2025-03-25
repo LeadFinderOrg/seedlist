@@ -10,7 +10,6 @@ import {
 import {
   ChevronLeft,
   ChevronRight,
-  MoreHorizontal,
   Zap
 } from "lucide-react";
 
@@ -27,6 +26,8 @@ import {
 
 import EmailAccountDrawer from "./EmailAccountDrawer";
 import { EmailTableData } from "./EmailAccountsRoot";
+import TableThreeDot from "./TableThreeDot";
+
 
 interface EmailAccountTableProps {
   data: EmailTableData[];
@@ -93,12 +94,12 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
           className="flex items-center justify-end gap-2"
           onClick={(e) => e.stopPropagation()}
         >
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-          <Zap color="#9CA3AF" />
+          <Button variant="ghost" size="icon" className="h-8 w-8 ">
+            <Zap color="#9CA3AF" />
           </Button>
-          <Button variant="ghost" size="icon" className="h-8 w-8">
-            <MoreHorizontal color="#6D6D6D"  />
-          </Button>
+
+          <TableThreeDot />
+
         </div>
       ),
     },
