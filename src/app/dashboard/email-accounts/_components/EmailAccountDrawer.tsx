@@ -18,12 +18,14 @@ interface EmailAccountDrawerProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedRow: EmailTableData | null;
+  defaultTab?: string; 
 }
 
 const EmailAccountDrawer: React.FC<EmailAccountDrawerProps> = ({
   isOpen,
   onOpenChange,
   selectedRow,
+  defaultTab,
 }) => {
   return (
     <Sheet open={isOpen} onOpenChange={onOpenChange}>
@@ -38,7 +40,7 @@ const EmailAccountDrawer: React.FC<EmailAccountDrawerProps> = ({
           </SheetClose>
         </div>
 
-        <NavigationTabs />
+        <NavigationTabs defaultTab={defaultTab}/>
       </SheetContent>
     </Sheet>
   );

@@ -166,7 +166,7 @@ const HealthScoreChart = () => {
 
   return (
     <div
-      className="p-4 rounded-xl shadow-md bg-gray-100 mt-6"
+      className="p-4 rounded-xl bg-gray-100 mt-6"
 
     >
       <div className="mb-4 flex items-center justify-between">

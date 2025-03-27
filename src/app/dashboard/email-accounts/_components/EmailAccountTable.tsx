@@ -1,18 +1,3 @@
-import { useState } from "react";
-
-import {
-  ColumnDef,
-  flexRender,
-  getCoreRowModel,
-  getPaginationRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
-import {
-  ChevronLeft,
-  ChevronRight,
-  Zap
-} from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -23,26 +8,43 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
+import {
+  ColumnDef,
+  flexRender,
+  getCoreRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { ChevronLeft, ChevronRight, Zap } from "lucide-react";
+import { useState } from "react";
 import EmailAccountDrawer from "./EmailAccountDrawer";
 import { EmailTableData } from "./EmailAccountsRoot";
 import TableThreeDot from "./TableThreeDot";
-
 
 interface EmailAccountTableProps {
   data: EmailTableData[];
   loading: boolean;
 }
 
-const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
-  data,
-  loading,
-}) => {
+const EmailAccountTable: React.FC<EmailAccountTableProps> = ({ data, loading }) => {
   const [selectedRow, setSelectedRow] = useState<EmailTableData | null>(null);
   const [isSheetOpen, setIsSheetOpen] = useState(false);
+  const [defaultTab, setDefaultTab] = useState<string>("warmup");
 
   const handleRowClick = (row: EmailTableData) => {
     setSelectedRow(row);
+    setDefaultTab("warmup");
+    setIsSheetOpen(true);
+  };
+
+
+  const handleOptionSelect = (option: string, row: EmailTableData) => {
+    if (option === "delete") {
+      console.log("Account selected successfully");
+      return;
+    }
+    setSelectedRow(row);
+    setDefaultTab(option);
     setIsSheetOpen(true);
   };
 
@@ -89,17 +91,16 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
     },
     {
       id: "actions",
-      cell: () => (
+      cell: ({ row }) => (
         <div
           className="flex items-center justify-end gap-2"
           onClick={(e) => e.stopPropagation()}
         >
-          <Button variant="ghost" size="icon" className="h-8 w-8 ">
+          <Button variant="ghost" size="icon" className="h-8 w-8">
             <Zap color="#9CA3AF" />
           </Button>
 
-          <TableThreeDot />
-
+          <TableThreeDot rowData={row.original} onOptionSelect={handleOptionSelect} />
         </div>
       ),
     },
@@ -137,16 +138,14 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
                     headerGroup.headers.map((header) => (
                       <TableHead
                         key={header.id}
-                        className={
-                          header.id === "select" ? "w-12" : "font-bold"
-                        }
+                        className={header.id === "select" ? "w-12" : "font-bold"}
                       >
                         {header.isPlaceholder
                           ? null
                           : flexRender(
-                            header.column.columnDef.header,
-                            header.getContext()
-                          )}
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
                       </TableHead>
                     ))
                   )}
@@ -163,20 +162,14 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
                     >
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id} className="text-sm">
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext()
-                          )}
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
                         </TableCell>
                       ))}
                     </TableRow>
                   ))
                 ) : (
                   <TableRow>
-                    <TableCell
-                      colSpan={columns.length}
-                      className="h-24 text-center"
-                    >
+                    <TableCell colSpan={columns.length} className="h-24 text-center">
                       No results.
                     </TableCell>
                   </TableRow>
@@ -198,10 +191,7 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
               >
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              {Array.from(
-                { length: table.getPageCount() },
-                (_, i) => i + 1
-              ).map((page) => (
+              {Array.from({ length: table.getPageCount() }, (_, i) => i + 1).map((page) => (
                 <Button
                   key={page}
                   variant={page === pageIndex + 1 ? "secondary" : "ghost"}
@@ -224,11 +214,11 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({
             </div>
           </div>
 
-          {/* Sheet for displaying row data */}
           <EmailAccountDrawer
             isOpen={isSheetOpen}
             onOpenChange={setIsSheetOpen}
             selectedRow={selectedRow}
+            defaultTab={defaultTab}
           />
         </>
       )}
