@@ -6,7 +6,7 @@ export default function TableThreeDot() {
         <div>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                    <MoreHorizontal color="#9CA3AF" className="h-8 w-8 p-1 hover:bg-gray-100 rounded-md" />
+                    <MoreHorizontal color="#9CA3AF" className="h-8 w-8 p-1 hover:bg-gray-100 rounded-sm" />
                 </DropdownMenuTrigger>
 
                 <DropdownMenuContent align="end" className="w-48 py-2">
