@@ -1,13 +1,32 @@
-import React from 'react';
-import dynamic from "next/dynamic";
-import { ApexOptions } from "apexcharts";
+import React from "react";
+import { ResponsiveLine } from "@nivo/line";
+import { parseISO, format } from "date-fns";
 
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+interface DataPoint {
+  date: string;
+  score: number;
+}
 
-const HealthScoreChart = () => {
-  const healthScoreData = [
+interface HealthScoreChartProps {
+  data?: DataPoint[];
+}
+
+function getScoreInfo(score: number) {
+  if (score >= 90) {
+    return { label: "Excellent", color: "text-green-500" };
+  } else if (score >= 70) {
+    return { label: "Good", color: "text-green-600" };
+  } else if (score >= 50) {
+    return { label: "Average", color: "text-orange-500" };
+  } else if (score >= 30) {
+    return { label: "Poor", color: "text-red-400" };
+  } else {
+    return { label: "N/A", color: "text-red-700" };
+  }
+}
+
+const HealthScoreChart: React.FC<HealthScoreChartProps> = () => {
+  const data = [
     { date: "2025-02-19", score: 10 },
     { date: "2025-02-20", score: 40 },
     { date: "2025-02-21", score: 50 },
@@ -17,160 +36,20 @@ const HealthScoreChart = () => {
     { date: "2025-02-25", score: 100 },
   ];
 
-  const getScoreCategory = (score: number) => {
-    if (score === 100) return "Excellent";
-    if (score >= 90) return "Excellent";
-    if (score >= 70) return "Good";
-    if (score >= 50) return "Average";
-    return "Poor";
-  };
-
-  const getColorForCategory = (category: string) => {
-    switch (category) {
-      case "Excellent":
-        return "#10B981"; // Green
-      case "Good":
-        return "#38BDF8"; // Blue
-      case "Average":
-        return "#F97316"; // Orange
-      case "Poor":
-        return "#EF4444"; // Red
-      default:
-        return "#6B7280"; // Gray
-    }
-  };
-
-  // Determine category/color based on the last score in the data array.
-  const lastScore = healthScoreData[healthScoreData.length - 1].score;
-  const lastScoreCategory = getScoreCategory(lastScore);
-  const lastScoreColor = getColorForCategory(lastScoreCategory);
-
-      
-
-  const options: ApexOptions = {
-    chart: {
-      type: "area",
-      height: 240,
-      toolbar: { show: false },
-      zoom: { enabled: false },
-      background: "transparent",
-    },
-    stroke: {
-      curve: "smooth",
-      width: 2,
-      colors: [lastScoreColor],
-    },
-    fill: {
-      type: "gradient",
-      gradient: {
-        type: "vertical",
-        shadeIntensity: 1,
-        gradientToColors: [lastScoreColor],
-        inverseColors: false,
-        // Increased opacities for better visibility
-        opacityFrom: 0.6,
-        opacityTo: 0.2,
-        stops: [0, 100],
-      },
-    },
-    dataLabels: { enabled: false },
-    tooltip: {
-      enabled: true,
-      intersect: false,
-      custom: function ({ series, seriesIndex, dataPointIndex }) {
-        const score = series[seriesIndex][dataPointIndex];
-        const date = new Date(healthScoreData[dataPointIndex].date);
-        const dayNames = [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-        ];
-        const scoreCategory = getScoreCategory(score);
-        const categoryColor = getColorForCategory(scoreCategory);
-
-        return `
-          <div class="p-3 bg-white rounded-lg shadow-md">
-            <div class="text-sm text-gray-600">
-              ${date.getDate()} ${
-          [
-            "January",
-            "February",
-            "March",
-            "April",
-            "May",
-            "June",
-            "July",
-            "August",
-            "September",
-            "October",
-            "November",
-            "December",
-          ][date.getMonth()]
-        }, ${date.getFullYear()}
-            </div>
-            <div class="text-xs text-gray-500">${dayNames[date.getDay()]}</div>
-            <div class="mt-2 flex items-center">
-              <span class="font-medium">Score: </span>
-              <span class="ml-1 font-bold" style="color: ${categoryColor}">
-                ${score} (${scoreCategory})
-              </span>
-            </div>
-          </div>
-        `;
-      },
-    },
-    markers: {
-      size: 5,
-      colors: [lastScoreColor],
-      strokeColors: "white",
-      strokeWidth: 2,
-    },
-    xaxis: {
-      type: "category",
-      categories: healthScoreData.map((item) => {
-        const date = new Date(item.date);
-        return `${date.getDate()} Feb`;
-      }),
-      labels: {
-        style: { colors: "#6B7280" },
-      },
-      axisBorder: { show: false },
-      axisTicks: { show: false },
-    },
-    yaxis: {
-      min: 0,
-      max: 100,
-      tickAmount: 5,
-      labels: {
-        style: { colors: "#6B7280" },
-        formatter: (value) => value.toFixed(0),
-      },
-    },
-    grid: {
-      show: true,
-      borderColor: "#E5E7EB",
-      strokeDashArray: 3,
-    },
-  };
-
-  const series = [
+  const chartData = [
     {
-      name: "Health Score",
-      data: healthScoreData.map((item) => item.score),
+      id: "Health Score",
+      data: data.map((item) => ({
+        x: item.date,
+        y: item.score,
+      })),
     },
   ];
 
   return (
-    <div
-      className="p-4 rounded-xl bg-gray-100 mt-6"
-
-    >
+    <div className="w-full bg-gray-100 p-4 rounded-xl mt-6">
       <div className="mb-4 flex items-center justify-between">
-        <h3 className="text-lg font-medium text-gray-800">Health Score History</h3>
+        <h3 className="text-lg font-semibold text-gray-800">Health Score History</h3>
         <div className="flex items-center space-x-4 mt-2">
           <div className="flex items-center">
             <span className="h-3 w-3 rounded-full bg-gray-400 mr-1"></span>
@@ -195,15 +74,87 @@ const HealthScoreChart = () => {
         </div>
       </div>
 
-      <div className="h-60">
-        {typeof window !== "undefined" && (
-          <ReactApexChart
-            options={options}
-            series={series}
-            type="area"
-            height="100%"
-          />
-        )}
+      <div className="h-80">
+        <ResponsiveLine
+          data={chartData}
+          margin={{ top: 20, right: 20, bottom: 35, left: 35 }}
+          xScale={{ type: "point" }}
+          yScale={{
+            type: "linear",
+            min: 0,
+            max: 100,
+            stacked: false,
+            reverse: false,
+          }}
+          axisBottom={{
+            tickSize: 0,
+            tickPadding: 10,
+            format: (value) => {
+              const dateObj = parseISO(value.toString());
+              return format(dateObj, "d MMM");
+            },
+          }}
+          axisLeft={{
+            tickSize: 0,
+            tickPadding: 10,
+          }}
+          colors={{ scheme: "green_blue" }}
+          lineWidth={3}
+          pointSize={8}
+          enableGridX={false}
+          enableGridY={true}
+          theme={{
+            grid: {
+              line: {
+                stroke: "#e5e7eb",
+                strokeWidth: 1,
+                strokeDasharray: "3 3",
+              },
+            },
+          }}
+          pointColor="#10b981"
+          pointBorderWidth={2}
+          pointBorderColor="#10b981"
+          enableArea={true}
+          areaOpacity={0.3}
+          defs={[
+            {
+              id: "red-green-gradient",
+              type: "linearGradient",
+              colors: [
+                { offset: 0, color: "#ef4444" },
+                { offset: 100, color: "#10b981" },
+              ],
+            },
+          ]}
+          fill={[{ match: "*", id: "red-green-gradient" }]}
+          enableSlices="x"
+          sliceTooltip={({ slice }) => {
+            const point = slice.points[0];
+            const dateStr = point.data.x as string;
+            const score = point.data.y as number;
+
+            const dateObj = parseISO(dateStr);
+            const dayNum = Number(format(dateObj, "d"));
+            const formattedDate = `${dayNum} ${format(dateObj, "MMMM, yyyy")}`;
+            const dayOfWeek = format(dateObj, "EEEE");
+
+            const { label: scoreLabel, color: scoreColor } = getScoreInfo(score);
+
+            return (
+              <div className="p-3 bg-white rounded shadow text-sm">
+                <div className="font-semibold">{formattedDate}</div>
+                <div className="text-gray-500">{dayOfWeek}</div>
+                <hr className="my-2 font-semibold" />
+                <div className={scoreColor}>
+                  Score: {score} ({scoreLabel})
+                </div>
+              </div>
+            );
+          }}
+          animate={true}
+          motionConfig="gentle"
+        />
       </div>
     </div>
   );
