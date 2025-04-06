@@ -1,6 +1,7 @@
 import React from "react";
 import { ResponsiveLine } from "@nivo/line";
 import { parseISO, format } from "date-fns";
+import { HealthScoreData } from "@/utils/constants/chartData";
 
 interface DataPoint {
   date: string;
@@ -26,20 +27,12 @@ function getScoreInfo(score: number) {
 }
 
 const HealthScoreChart: React.FC<HealthScoreChartProps> = () => {
-  const data = [
-    { date: "2025-02-19", score: 10 },
-    { date: "2025-02-20", score: 40 },
-    { date: "2025-02-21", score: 50 },
-    { date: "2025-02-22", score: 100 },
-    { date: "2025-02-23", score: 100 },
-    { date: "2025-02-24", score: 100 },
-    { date: "2025-02-25", score: 100 },
-  ];
+
 
   const chartData = [
     {
       id: "Health Score",
-      data: data.map((item) => ({
+      data: HealthScoreData.map((item) => ({
         x: item.date,
         y: item.score,
       })),

@@ -40,7 +40,7 @@ const EmailAccountDrawer: React.FC<EmailAccountDrawerProps> = ({
           </SheetClose>
         </div>
 
-        <NavigationTabs defaultTab={defaultTab}/>
+        <NavigationTabs defaultTab={defaultTab} selectedRow={selectedRow}/>
       </SheetContent>
     </Sheet>
   );

@@ -78,15 +78,15 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({ data, loading }) 
       header: "EMAIL",
     },
     {
-      accessorKey: "phone",
+      accessorKey: "emailsSent",
       header: "EMAILS SENT",
     },
     {
-      accessorKey: "username",
+      accessorKey: "warmupEmails",
       header: "WARMUP EMAILS",
     },
     {
-      accessorKey: "id",
+      accessorKey: "healthScore",
       header: "HEALTH SCORE",
     },
     {

@@ -5,14 +5,17 @@ import DomainAuthentication from "./DomainAuthentication";
 import EmailWarmupStats from "./EmailWarmupStats";
 import HealthScoreChart from "./HealthScoreChart";
 import WarmupEmailsChart from "./WarmupEmailsChart";
+import { EmailTableData } from "./EmailAccountsRoot";
 
 interface NavigationTabsProps {
   defaultTab?: string;
+  selectedRow: EmailTableData | null;
 }
 
 
 const NavigationTabs: React.FC<NavigationTabsProps> = ({
   defaultTab = "warmup",
+  selectedRow,
 }) => {
   return (
     <>
@@ -25,7 +28,7 @@ const NavigationTabs: React.FC<NavigationTabsProps> = ({
           </TabsList>
         </div>
         <TabsContent value="warmup" className="w-full">
-          <EmailWarmupStats />
+          <EmailWarmupStats selectedRow={selectedRow} />
           <DomainAuthentication />
           <WarmupEmailsChart />
           <HealthScoreChart />

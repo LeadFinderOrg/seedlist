@@ -12,11 +12,16 @@ import EmailAccountTable from "./EmailAccountTable";
 import TableDataFilter from "./TableDataFilter";
 
 export interface EmailTableData {
-  id: number;
-  name: string;
   email: string;
-  phone: string;
-  username: string;
+  emailReceived: number;
+  emailSent: number;
+  emailsSent: string;
+  healthScore: number;
+  id: string;
+  spam: number;
+  startedOn: number;
+  warmupEmails: number;
+  warmupEnable: boolean;
 }
 
 const EmailAccountsRoot = () => {
@@ -30,7 +35,7 @@ const EmailAccountsRoot = () => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "https://jsonplaceholder.typicode.com/users"
+          "https://67f2911dec56ec1a36d37dda.mockapi.io/api/emailList/emails"
         );
         const jsonData = await response.json();
         setData(jsonData);

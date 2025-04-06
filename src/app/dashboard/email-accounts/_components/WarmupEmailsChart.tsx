@@ -1,15 +1,8 @@
+import { WarmupEmailChartData } from '@/utils/constants/chartData'
 import { ResponsiveBar } from '@nivo/bar'
 
 export default function WarmupEmailsChart() {
-  const data = [
-    { day: 'Mon', warmup: 5, spam: 2 },
-    { day: 'Tue', warmup: 8, spam: 0 },
-    { day: 'Wed', warmup: 4, spam: 0 },
-    { day: 'Thu', warmup: 10, spam: 0 },
-    { day: 'Fri', warmup: 15, spam: 0 },
-    { day: 'Sat', warmup: 10, spam: 13 },
-    { day: 'Sun', warmup: 20, spam: 10 },
-  ]
+
 
   return (
     <div className="w-full bg-gray-100 p-4 rounded-xl">
@@ -18,7 +11,7 @@ export default function WarmupEmailsChart() {
 
       <div className="h-72">
         <ResponsiveBar
-          data={data}
+          data={WarmupEmailChartData}
           keys={['warmup', 'spam']}
           indexBy="day"
           groupMode="stacked"
