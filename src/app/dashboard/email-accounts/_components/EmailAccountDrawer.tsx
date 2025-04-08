@@ -18,7 +18,7 @@ interface EmailAccountDrawerProps {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   selectedRow: EmailTableData | null;
-  defaultTab?: string; 
+  defaultTab?: string;
 }
 
 const EmailAccountDrawer: React.FC<EmailAccountDrawerProps> = ({

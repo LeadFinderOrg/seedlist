@@ -18,6 +18,7 @@ import {
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { LeadTableData } from "./LeadsTab";
+import LeadTableDrawer from "./LeadTableDrawer";
 // import TableThreeDot from "./TableThreeDot";
 
 interface LeadTableProps {
@@ -28,11 +29,11 @@ interface LeadTableProps {
 const LeadTable: React.FC<LeadTableProps> = ({ data, loading }) => {
     const [selectedRow, setSelectedRow] = useState<LeadTableData | null>(null);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
-    const [defaultTab, setDefaultTab] = useState<string>("warmup");
+    const [defaultTab, setDefaultTab] = useState<string>("leadDetails");
 
-    const handleRowClick = (row: LeadTableData) => {
+    const handleOpenDrawer = (row: LeadTableData) => {
         setSelectedRow(row);
-        setDefaultTab("warmup");
+        setDefaultTab("leadDetails");
         setIsSheetOpen(true);
     };
 
@@ -64,20 +65,35 @@ const LeadTable: React.FC<LeadTableProps> = ({ data, loading }) => {
         {
             accessorKey: "email",
             header: "EMAIL",
+            cell: ({ row }) => (
+                <div
+                    className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => handleOpenDrawer(row.original)}
+                >
+                    {row.getValue("email")}
+                </div>
+            ),
         },
         {
             accessorKey: "emailProvider",
             header: "EMAIL PROVIDER",
+            cell: ({ row }) => (
+                <div className="flex items-center gap-2 cursor-pointer"
+                    onClick={() => handleOpenDrawer(row.original)}
+                >
+                    {row.getValue("emailProvider")}
+                </div>
+            ),
         },
         {
             accessorKey: "status",
             header: "STATUS",
             cell: () => {
                 return <div className="flex items-center gap-2">
-                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-[#16A34A] font-normal text-[#16A34A]">
+                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-[#16A34A] text-[#16A34A]">
                         Completed
                     </button>
-                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-[#EF4444] font-normal text-[#EF4444]">
+                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-[#EF4444] text-[#EF4444]">
                         Not Interested
                     </button>
                 </div>;
@@ -149,7 +165,7 @@ const LeadTable: React.FC<LeadTableProps> = ({ data, loading }) => {
                                             key={row.id}
                                             data-state={row.getIsSelected() && "selected"}
                                             className="border-b border-gray-200 cursor-pointer hover:bg-gray-50"
-                                            onClick={() => handleRowClick(row.original)}
+                                        // onClick={() => handleRowClick(row.original)}
                                         >
                                             {row.getVisibleCells().map((cell) => (
                                                 <TableCell key={cell.id} className="text-sm">
@@ -204,6 +220,13 @@ const LeadTable: React.FC<LeadTableProps> = ({ data, loading }) => {
                             </Button>
                         </div>
                     </div>
+
+                    <LeadTableDrawer
+                        isOpen={isSheetOpen}
+                        onOpenChange={setIsSheetOpen}
+                        selectedRow={selectedRow}
+                        defaultTab={defaultTab}
+                    />
                 </>
             )}
         </div>
