@@ -85,7 +85,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                 render={({ field }) => (
                   <FormItem className="space-y-2">
                     <FormLabel htmlFor="campaign-slow-ramp" className="text-base font-medium text-slate-800 flex items-center gap-2">
-                      Campaign Slow Ramp<Info size={18} color="#475569" strokeWidth={1} />
+                      Campaign Slow Ramp<Info size={18} className="text-slate-600" strokeWidth={1} />
                     </FormLabel>
                     <FormDescription className="text-xs text-slate-800">
                       Gradually increase the number of campaign emails sent per day
@@ -101,7 +101,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                         </FormControl>
                         <FormLabel htmlFor="enable-toggle" className="text-sm font-medium">Enable</FormLabel>
                       </div>
-                      <Badge variant="primaryBlue">Recommended</Badge>
+                      <Badge className="bg-[#2184C6]" >Recommended</Badge>
                     </div>
                     <FormMessage />
                   </FormItem>

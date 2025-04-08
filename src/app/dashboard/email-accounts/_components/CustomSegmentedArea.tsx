@@ -1,3 +1,4 @@
+import { getFillColorByScore } from "@/utils/constants/healthChart-fillColors";
 import React from "react";
 
 export interface ScoreInfo {
@@ -60,24 +61,7 @@ const CustomSegmentedArea: React.FC<CustomSegmentedAreaProps> = ({
         const x1 = xScale(nextPoint.data.x);
         const y1 = yScale(nextPoint.data.y);
 
-        const scoreInfo = getScoreInfo(currentPoint.data.y);
-        let fillColor = "#B91C1C";
-        switch (scoreInfo.label) {
-          case "Excellent":
-            fillColor = "#34D399";
-            break;
-          case "Good":
-            fillColor = "#059669";
-            break;
-          case "Average":
-            fillColor = "#F97316";
-            break;
-          case "Poor":
-            fillColor = "#EF4444";
-            break;
-          default:
-            fillColor = "#B91C1C";
-        }
+        const fillColor = getFillColorByScore(currentPoint.data.y);
 
         const pathD = `
           M ${x0},${y0}

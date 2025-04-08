@@ -31,7 +31,7 @@ const BasicWarmup: React.FC<BasicWarmupProps> = ({
             </h3>
   
             <h3 className="text-slate-800 font-medium flex items-center gap-2 mt-5">
-              Warmup filter tag <Info size={18} color="#475569" strokeWidth={1} />
+              Warmup filter tag <Info size={18} className="text-slate-600" strokeWidth={1} />
             </h3>
   
             <section className="w-full mb-3">
@@ -104,12 +104,12 @@ const BasicWarmup: React.FC<BasicWarmupProps> = ({
                                   onCheckedChange={field.onChange}
                                 />
                               </FormControl>
-                              <FormLabel htmlFor="disable-slow-warmup" className="text-sm font-medium text-slate-800 !mt-0">
+                              <FormLabel htmlFor="disable-slow-warmup" className="text-sm font-medium text-slate-800 !mt-1">
                                 Disable slow warmup
                               </FormLabel>
                               <Tooltip>
                                 <TooltipTrigger>
-                                  <HelpCircle className="h-4 w-4 text-gray-400" />
+                                  <HelpCircle className="h-4 w-4 text-slate-600" />
                                 </TooltipTrigger>
                                 <TooltipContent>
                                   <p className="text-xs">Provides information about disabling slow warmup</p>

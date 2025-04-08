@@ -78,7 +78,7 @@ const SenderName: React.FC<senderNameProps> = ({
                     <section className="flex flex-wrap gap-6 my-4"></section>
 
                     <h3 className="text-slate-800 font-medium pb-1 border-b border-gray-300 flex items-center gap-2">
-                        Tags <Info size={18} color="#475569" strokeWidth={1} />
+                        Tags <Info size={18} className="text-slate-600" strokeWidth={1} />
                     </h3>
                     <section className="flex flex-wrap gap-6 my-4">
                         <FormField

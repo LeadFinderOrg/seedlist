@@ -113,7 +113,7 @@ export default function SettingsTab() {
                     <div className="w-full bg-gray-100 p-4 flex gap-4 fixed bottom-0 ml-[-24px]">
                         <Button
                             type="submit"
-                            variant="primary"
+                            className="bg-[#2184C6] hover:bg-[#2184C6]/90"
                             disabled={isSubmitting}
                         >
                             {isSubmitting ? "Saving..." : "Save"}
