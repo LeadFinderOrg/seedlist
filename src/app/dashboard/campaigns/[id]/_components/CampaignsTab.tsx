@@ -2,6 +2,11 @@ import { DownloadIcon, PauseIcon } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import AnalyticsTab from "./AnalyticsTab";
+import LeadsTab from "./LeadsTab";
+import SequencesTab from "./SequencesTab";
+import ScheduleTab from "./ScheduleTab";
+import OptionsTab from "./OptionsTab";
 
 const tabItems = [
   { value: "analytics", label: "Analytics" },
@@ -37,11 +42,13 @@ export default function CampaignsTab() {
         </div>
       </div>
 
-      {tabItems.map(({ value, label }) => (
+      {tabItems.map(({ value }) => (
         <TabsContent key={value} value={value}>
-          {value === "analytics"
-            ? "Analytics erum officia voluptate vero, sapiente exercitationem."
-            : label}
+          {value === "analytics" && <AnalyticsTab />}
+          {value === "leads" && <LeadsTab />}
+          {value === "sequences" && <SequencesTab />}
+          {value === "schedule" && <ScheduleTab />}
+          {value === "options" && <OptionsTab />}
         </TabsContent>
       ))}
     </Tabs>
