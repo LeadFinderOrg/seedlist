@@ -86,7 +86,7 @@ export default function AdvanceWarmup() {
                             />
                         </div>
                     </section>
-                    <section className="my-6">
+                    <section className="mb-3">
                         <h3 className="text-slate-800 font-medium">
                             Mark Important
                         </h3>
