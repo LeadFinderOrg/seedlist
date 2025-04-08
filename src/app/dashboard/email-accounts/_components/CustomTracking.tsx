@@ -1,5 +1,12 @@
 
-export default function CustomTracking() {
+interface CustomTrackingProps {
+    form: any
+}
+
+const CustomTracking: React.FC<CustomTrackingProps> = ({
+    form
+}) => {
+
     return (
         <>
             <div className="bg-gray-50 rounded-xl mb-6 mt-4">
@@ -18,4 +25,6 @@ export default function CustomTracking() {
             </div>
         </>
     )
-}
+};
+
+export default CustomTracking;
