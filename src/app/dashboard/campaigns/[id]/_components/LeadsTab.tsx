@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useRouter } from "next/navigation";
 import { Button } from '@/components/ui/button';
 import { CirclePlus, ListChecks, LucideIcon, Search, CircleCheck, MailOpen, Reply, UserCheck, Users } from 'lucide-react';
@@ -12,6 +12,7 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { LeadStatusItem } from './LeadStatusItem';
+import LeadTable from './LeadTable';
 
 interface StatusOption {
   value: string;
@@ -28,36 +29,46 @@ export interface LeadStatusItemProps {
   fill?: string;
 };
 
+export interface LeadTableData {
+  id: string;
+  email: string;
+  emailProvider: string;
+  status: string;
+  contact: string;
+  company: string;
+  pauseUntil: string;
+}
+
 const StatsBarItem = [
   {
-      title: 'Leads Created',
-      number: 3428,
-      icon: Users,
-      color: '#2563EB',
+    title: 'Leads Created',
+    number: 3428,
+    icon: Users,
+    color: '#2563EB',
   },
   {
-      title: 'Leads Contacted',
-      number: 3428,
-      icon: UserCheck,
-      color: '#9333EA',
+    title: 'Leads Contacted',
+    number: 3428,
+    icon: UserCheck,
+    color: '#9333EA',
   },
   {
-      title: 'Leads Opened',
-      number: 0,
-      icon: MailOpen,
-      color: '#EA580C',
+    title: 'Leads Opened',
+    number: 0,
+    icon: MailOpen,
+    color: '#EA580C',
   },
   {
-      title: 'Leads Replied',
-      number: 24,
-      icon: Reply,
-      color: '#DB2777',
+    title: 'Leads Replied',
+    number: 24,
+    icon: Reply,
+    color: '#DB2777',
   },
   {
-      title: 'Completed Leads',
-      number: 2985,
-      icon: CircleCheck,
-      color: '#16A34A'
+    title: 'Completed Leads',
+    number: 2985,
+    icon: CircleCheck,
+    color: '#16A34A'
   }
 ]
 
@@ -69,6 +80,8 @@ export default function LeadsTab() {
   //states
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
+  const [data, setData] = useState<LeadTableData[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const statusOptions: StatusOption[] = [
     {
@@ -119,6 +132,23 @@ export default function LeadsTab() {
   const handleAddNew = () => {
     router.push(`/dashboard/campaigns/${campaignId}/leads/new`);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://67f4be1ecbef97f40d2f2dcf.mockapi.io/api/v1/leads"
+        );
+        const jsonData = await response.json();
+        setData(jsonData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -175,6 +205,10 @@ export default function LeadsTab() {
             ))}
           </SelectContent>
         </Select>
+      </div>
+
+      <div className="mt-4">
+        <LeadTable data={data} loading={loading} />
       </div>
     </div>
   )

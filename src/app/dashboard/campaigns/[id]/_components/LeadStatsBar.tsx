@@ -14,7 +14,7 @@ type StatsSectionProps = {
 
 export default function LeadStatsBar({ stats }: StatsSectionProps) {
     return (
-        <div className="flex items-center justify-evenly bg-white border border-input rounded-lg py-2 px-4">
+        <div className="flex items-center justify-evenly bg-white border border-input rounded-md py-2 px-4">
             {stats.map((item, index) => (
                 <div key={index} className="flex items-center justify-center">
                     <div className="flex items-center justify-center gap-2">
