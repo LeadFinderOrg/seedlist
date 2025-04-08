@@ -8,9 +8,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Info, User } from "lucide-react";
+import { UseFormReturn } from "react-hook-form";
+import { FormValues } from "./SettingsTab";
 
 interface senderNameProps {
-    form: any
+    form: UseFormReturn<FormValues>;
 }
 
 const SenderName: React.FC<senderNameProps> = ({

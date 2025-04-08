@@ -2,18 +2,20 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 
 import {
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { HelpCircle, Info, RotateCcw } from "lucide-react";
+import { UseFormReturn } from "react-hook-form";
+import { FormValues } from "./SettingsTab";
 
 interface BasicWarmupProps {
-    form: any
+    form: UseFormReturn<FormValues>;
 }
 
 const BasicWarmup: React.FC<BasicWarmupProps> = ({
@@ -44,7 +46,7 @@ const BasicWarmup: React.FC<BasicWarmupProps> = ({
                           <Input
                             id="custom-tag"
                             placeholder="Custom tag"
-                            className="h-9 w-full"
+                            className="h-9 w-full bg-white"
                             {...field}
                           />
                           <button 
@@ -81,7 +83,7 @@ const BasicWarmup: React.FC<BasicWarmupProps> = ({
                         <Input
                           id="increase-per-day"
                           type="number"
-                          className="h-9"
+                          className="h-9 bg-white"
                           {...field}
                           onChange={(e) => field.onChange(Number(e.target.value))}
                         />
@@ -137,7 +139,7 @@ const BasicWarmup: React.FC<BasicWarmupProps> = ({
                         <Input
                           id="daily-warmup"
                           type="number"
-                          className="h-9"
+                          className="h-9 bg-white"
                           {...field}
                           onChange={(e) => field.onChange(Number(e.target.value))}
                         />
@@ -162,7 +164,7 @@ const BasicWarmup: React.FC<BasicWarmupProps> = ({
                         <Input
                           id="reply-rate"
                           type="number"
-                          className="h-9"
+                          className="h-9 bg-white"
                           {...field}
                           onChange={(e) => field.onChange(Number(e.target.value))}
                         />

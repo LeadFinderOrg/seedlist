@@ -39,12 +39,13 @@ const formSchema = z.object({
         markImportant: z.number().min(0, "Must be at least 0").max(100, "Cannot exceed 100%"),
     }),
     customTracking: z.object({
-        domains: z.array(z.string()).optional(),
+        customTrackingDomain: z.boolean().default(false),
+        subDomain: z.string().optional(),
     }),
 });
 
 
-type FormValues = z.infer<typeof formSchema>;
+export type FormValues = z.infer<typeof formSchema>;
 
 export default function SettingsTab() {
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
@@ -80,7 +81,8 @@ export default function SettingsTab() {
                 markImportant: 100,
             },
             customTracking: {
-                domains: [],
+                customTrackingDomain:false,
+                subDomain:"",
             },
         },
     });

@@ -1,21 +1,23 @@
 import { Badge } from "@/components/ui/badge";
 import {
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
 import { Info } from "lucide-react";
+import { UseFormReturn } from "react-hook-form";
+import { FormValues } from "./SettingsTab";
 interface CampaignSettingsProps {
-    form: any
+  form: UseFormReturn<FormValues>;
 }
 
 const CampaignSettings: React.FC<CampaignSettingsProps> = ({
-    form
+  form
 }) => {
   return (
     <>
@@ -42,7 +44,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                       <Input
                         id="daily-campaign-limit"
                         type="number"
-                        className="h-9"
+                        className="h-9 bg-white"
                         {...field}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                       />
@@ -67,7 +69,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                       <Input
                         id="minimum-wait-time"
                         type="number"
-                        className="h-9"
+                        className="h-9 bg-white"
                         {...field}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                       />
@@ -91,7 +93,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                     <div className="flex items-center space-x-4">
                       <div className="flex items-center space-x-3">
                         <FormControl>
-                          <Switch 
+                          <Switch
                             id="enable-toggle"
                             checked={field.value}
                             onCheckedChange={field.onChange}
@@ -122,7 +124,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                         id="reply-to-address"
                         type="email"
                         placeholder="Enter email"
-                        className="h-9"
+                        className="h-9 bg-white"
                         {...field}
                       />
                     </FormControl>
@@ -146,7 +148,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                       <Input
                         id="daily-inbox-placement"
                         type="number"
-                        className="h-9"
+                        className="h-9 bg-white"
                         {...field}
                         onChange={(e) => field.onChange(Number(e.target.value))}
                       />

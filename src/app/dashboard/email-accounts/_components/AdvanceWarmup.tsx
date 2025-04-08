@@ -1,16 +1,18 @@
 import {
-    FormControl,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@/components/ui/form";
 import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
+import { UseFormReturn } from "react-hook-form";
+import { FormValues } from "./SettingsTab";
   
   interface AdvanceWarmupProps {
-    form: any
+    form: UseFormReturn<FormValues>;
 }
 
 const AdvanceWarmup: React.FC<AdvanceWarmupProps> = ({
