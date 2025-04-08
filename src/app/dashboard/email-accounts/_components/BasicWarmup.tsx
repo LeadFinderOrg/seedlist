@@ -35,9 +35,9 @@ export default function BasicWarmup() {
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-8 items-center">
+                        <div className="grid grid-cols-2 gap-6">
                             <div className="space-y-1">
-                                <Label htmlFor="increase-per-day" className="text-sm font-medium text-gray-700">Increase per day</Label>
+                                <Label htmlFor="increase-per-day" className="text-base font-medium text-slate-800">Increase per day</Label>
                                 <div className="text-xs text-slate-800">Suggested 1</div>
                                 <Input
                                     id="increase-per-day"
@@ -45,10 +45,23 @@ export default function BasicWarmup() {
                                     defaultValue="1"
                                     className="h-9"
                                 />
+
+                                <div className="mt-2 flex items-center gap-2">
+                                    <Checkbox id="disable-slow-warmup" className="h-4 w-4" />
+                                    <Label htmlFor="disable-slow-warmup" className="text-sm font-medium text-slate-800">Disable slow warmup</Label>
+                                    <Tooltip>
+                                        <TooltipTrigger>
+                                            <HelpCircle className="h-4 w-4 text-gray-400" />
+                                        </TooltipTrigger>
+                                        <TooltipContent>
+                                            <p className="text-xs">Provides information about disabling slow warmup</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </div>
                             </div>
 
                             <div className="space-y-1">
-                                <Label htmlFor="daily-warmup" className="text-sm font-medium text-gray-700">Daily warmup limit</Label>
+                                <Label htmlFor="daily-warmup" className="text-base font-medium text-slate-800">Daily warmup limit</Label>
                                 <div className="text-xs text-slate-800">Suggested 10</div>
                                 <Input
                                     id="daily-warmup"
@@ -57,24 +70,9 @@ export default function BasicWarmup() {
                                     className="h-9"
                                 />
                             </div>
-                        </div>
 
-                        <div className="mt-2 flex items-center space-x-2">
-                            <Checkbox id="disable-slow-warmup" className="h-4 w-4 rounded border-gray-300" />
-                            <Label htmlFor="disable-slow-warmup" className="text-sm font-medium text-gray-700">Disable slow warmup</Label>
-                            <Tooltip>
-                                <TooltipTrigger>
-                                    <HelpCircle className="h-4 w-4 text-gray-400" />
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p className="text-xs">Provides information about disabling slow warmup</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-8 items-center mt-4">
                             <div className="space-y-1">
-                                <Label htmlFor="reply-rate" className="text-sm font-medium text-gray-700">Reply rate %</Label>
+                                <Label htmlFor="reply-rate" className="text-base font-medium text-slate-800">Reply rate %</Label>
                                 <div className="text-xs text-slate-800">Suggested 30</div>
                                 <Input
                                     id="reply-rate"
@@ -83,10 +81,7 @@ export default function BasicWarmup() {
                                     className="h-9"
                                 />
                             </div>
-
-                            <div></div>
                         </div>
-
 
                     </section>
                 </div>

@@ -1,13 +1,14 @@
 import { useState } from "react";
 
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Info, User } from "lucide-react";
 
 
 export default function SenderName() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    
+
     return (
         <>
             <div className="bg-gray-50 rounded-xl mb-6 mt-4">
@@ -53,7 +54,16 @@ export default function SenderName() {
                         Tags <Info size={18} color="#475569" strokeWidth={1} />
                     </h3>
                     <section className="flex flex-wrap gap-6 my-4">
-
+                        <Select>
+                            <SelectTrigger className="w-full border border-gray-200 rounded px-3 py-2 text-sm bg-white text-slate-800 flex justify-between items-center">
+                                <SelectValue placeholder="Tags" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="tag1">Tag 1</SelectItem>
+                                <SelectItem value="tag2">Tag 2</SelectItem>
+                                <SelectItem value="tag3">Tag 3</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </section>
                 </div>
             </div>

@@ -1,3 +1,4 @@
+import { Label } from '@/components/ui/label'
 import { Slider } from '@/components/ui/slider'
 import { Switch } from '@/components/ui/switch'
 
@@ -19,7 +20,10 @@ export default function AdvanceWarmup() {
                                 Only send warmup emails on weekdays for a more natural sending
                                 pattern.
                             </p>
-                            <Switch id="weekdays-only" defaultChecked={false} />
+                            <div className="flex items-center space-x-3">
+                                <Switch id="weekdays-only" />
+                                <Label htmlFor="weekdays-only" className="text-sm font-medium">Enable</Label>
+                            </div>
                         </div>
                     </section>
 
@@ -31,7 +35,10 @@ export default function AdvanceWarmup() {
                             <p className="text-slate-600 text-sm min-w-40">
                                 Spend time and scroll though your warmup to emulate human-like reading.
                             </p>
-                            <Switch id="read-emulation" defaultChecked={false} />
+                            <div className="flex items-center space-x-3">
+                                <Switch id="read-emulation" />
+                                <Label htmlFor="read-emulation" className="text-sm font-medium">Enable</Label>
+                            </div>
                         </div>
                     </section>
 
@@ -43,8 +50,10 @@ export default function AdvanceWarmup() {
                             <p className="text-slate-600 text-sm min-w-40">
                                 Including your custom tracking domain in your warmup emails to improve deliverability.
                             </p>
-                            <Switch id="warm-custom-tracking-domain"
-                                defaultChecked={false} />
+                            <div className="flex items-center space-x-3">
+                                <Switch id="warm-custom-tracking-domain" />
+                                <Label htmlFor="warm-custom-tracking-domain" className="text-sm font-medium">Enable</Label>
+                            </div>
                         </div>
                     </section>
 
