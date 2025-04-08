@@ -3,40 +3,47 @@ import { DownloadIcon, PauseIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
+const tabItems = [
+  { value: "analytics", label: "Analytics" },
+  { value: "leads", label: "Leads" },
+  { value: "sequences", label: "Sequences" },
+  { value: "schedule", label: "Schedule" },
+  { value: "options", label: "Options" },
+];
+
 export default function CampaignsTab() {
   return (
     <Tabs defaultValue="analytics">
-      <div className="mt-6 flex items-center justify-between">
+      <div className="my-6 flex items-center justify-between pb-2 border-b-2 border-[#F3F4F6] relative">
         <TabsList className="w-[500px] grid grid-cols-5">
-          <TabsTrigger value="analytics">Analytics</TabsTrigger>
-          <TabsTrigger value="leads">Leads</TabsTrigger>
-          <TabsTrigger value="sequences">Sequences</TabsTrigger>
-          <TabsTrigger value="schedule">Schedule</TabsTrigger>
-          <TabsTrigger value="options">Options</TabsTrigger>
+          {tabItems.map(({ value, label }) => (
+            <TabsTrigger
+              key={value}
+              value={value}
+              className="relative data-[state=active]:before:content-[''] data-[state=active]:before:absolute data-[state=active]:before:h-[2px] data-[state=active]:before:w-full data-[state=active]:before:bg-[#3B82F6] data-[state=active]:before:bottom-[-13.75px]"
+            >
+              {label}
+            </TabsTrigger>
+          ))}
         </TabsList>
         <div className="flex gap-2">
-          <Button
-            variant="outline"
-            className="flex items-center gap-2 border rounded"
-          >
+          <Button variant="outline" className="flex items-center gap-2 border rounded">
             <PauseIcon size={16} />
             <span>Pause Campaign</span>
           </Button>
-          <Button
-            variant="outline"
-            className="w-10 flex items-center justify-center"
-          >
+          <Button variant="outline" className="w-10 flex items-center justify-center">
             <DownloadIcon size={16} />
           </Button>
         </div>
       </div>
-      <TabsContent value="analytics">
-        Analytics erum officia voluptate vero, sapiente exercitationem.
-      </TabsContent>
-      <TabsContent value="leads">Leads</TabsContent>
-      <TabsContent value="sequences">Sequences</TabsContent>
-      <TabsContent value="schedule">Schedule</TabsContent>
-      <TabsContent value="options">Options</TabsContent>
+
+      {tabItems.map(({ value, label }) => (
+        <TabsContent key={value} value={value}>
+          {value === "analytics"
+            ? "Analytics erum officia voluptate vero, sapiente exercitationem."
+            : label}
+        </TabsContent>
+      ))}
     </Tabs>
   );
 }
