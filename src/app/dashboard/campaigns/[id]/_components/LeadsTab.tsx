@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useRouter } from "next/navigation";
 import { Button } from '@/components/ui/button';
-import { CirclePlus, ListChecks, LucideIcon, Search, CircleCheck, MailOpen, Reply, UserCheck, Users } from 'lucide-react';
+import { CirclePlus, LucideIcon, Search } from 'lucide-react';
 import { Input } from '@/components/ui/input';
-import LeadStatsBar from './LeadStatsBar';
 import {
   Select,
   SelectContent,
@@ -13,8 +12,10 @@ import {
 } from "@/components/ui/select";
 import { LeadStatusItem } from './LeadStatusItem';
 import LeadTable from './LeadTable';
+import { statsBarData, statusDropdownOptions } from '@/utils/constants/leadsTabData';
+import StatsBar from '@/components/ui/StatsBar';
 
-interface StatusOption {
+export interface StatusOptionTypes {
   value: string;
   label: string;
   icon: LucideIcon | null;
@@ -39,39 +40,6 @@ export interface LeadTableData {
   pauseUntil: string;
 }
 
-const StatsBarItem = [
-  {
-    title: 'Leads Created',
-    number: 3428,
-    icon: Users,
-    color: '#2563EB',
-  },
-  {
-    title: 'Leads Contacted',
-    number: 3428,
-    icon: UserCheck,
-    color: '#9333EA',
-  },
-  {
-    title: 'Leads Opened',
-    number: 0,
-    icon: MailOpen,
-    color: '#EA580C',
-  },
-  {
-    title: 'Leads Replied',
-    number: 24,
-    icon: Reply,
-    color: '#DB2777',
-  },
-  {
-    title: 'Completed Leads',
-    number: 2985,
-    icon: CircleCheck,
-    color: '#16A34A'
-  }
-]
-
 export default function LeadsTab() {
   const router = useRouter();
   const params = useParams();
@@ -82,51 +50,6 @@ export default function LeadsTab() {
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [data, setData] = useState<LeadTableData[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
-  const statusOptions: StatusOption[] = [
-    {
-      value: 'all',
-      label: 'All Statuses',
-      icon: ListChecks,
-      color: '#6b7280',
-      fill: 'none'
-    },
-    {
-      value: 'reply-received',
-      label: 'Reply Received',
-      icon: null,
-      color: '#2184C6',
-      fill: '#2184C6'
-    },
-    {
-      value: 'link-clicked',
-      label: 'Link Clicked',
-      icon: null,
-      color: '#6b7280',
-      fill: 'none'
-    },
-    {
-      value: 'completed-no-reply',
-      label: 'Completed, No Reply',
-      icon: null,
-      color: '#e9a616',
-      fill: 'none'
-    },
-    {
-      value: 'email-opened-no-reply',
-      label: 'Email Opened, No Reply',
-      icon: null,
-      color: '#e96016',
-      fill: 'none'
-    },
-    {
-      value: 'no-emails-opened',
-      label: 'No Emails Opened',
-      icon: null,
-      color: '#e96016',
-      fill: 'none'
-    }
-  ];
 
   //navigate to add new lead page handler
   const handleAddNew = () => {
@@ -173,7 +96,7 @@ export default function LeadsTab() {
       </div>
       <div className="flex justify-between items-center mt-3">
         {/* stats bar */}
-        <LeadStatsBar stats={StatsBarItem} />
+        <StatsBar stats={statsBarData} />
 
         {/* all status select */}
         <Select
@@ -182,18 +105,18 @@ export default function LeadsTab() {
         >
           <SelectTrigger className="lg:max-w-[310px] w-full md:flex-grow">
             <SelectValue placeholder="All Statuses">
-              {statusOptions.find(option => option.value === selectedStatus) && (
+              {statusDropdownOptions.find(option => option.value === selectedStatus) && (
                 <LeadStatusItem
-                  label={statusOptions.find(option => option.value === selectedStatus)!.label}
-                  icon={statusOptions.find(option => option.value === selectedStatus)!.icon}
-                  color={statusOptions.find(option => option.value === selectedStatus)!.color}
-                  fill={statusOptions.find(option => option.value === selectedStatus)!.fill}
+                  label={statusDropdownOptions.find(option => option.value === selectedStatus)!.label}
+                  icon={statusDropdownOptions.find(option => option.value === selectedStatus)!.icon}
+                  color={statusDropdownOptions.find(option => option.value === selectedStatus)!.color}
+                  fill={statusDropdownOptions.find(option => option.value === selectedStatus)!.fill}
                 />
               )}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>
-            {statusOptions.map((option) => (
+            {statusDropdownOptions.map((option) => (
               <SelectItem key={option.value} value={option.value}>
                 <LeadStatusItem
                   label={option.label}

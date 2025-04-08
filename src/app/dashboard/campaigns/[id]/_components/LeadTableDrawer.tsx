@@ -1,25 +1,13 @@
 import React from "react";
-import { LucideIcon, Plus, X, Zap } from "lucide-react";
-import {
-    Sheet,
-    SheetClose,
-    SheetContent,
-    SheetDescription,
-    SheetHeader,
-    SheetTitle,
-} from "@/components/ui/sheet";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue
-} from "@/components/ui/select";
+import { LucideIcon, X } from "lucide-react";
+import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, } from "@/components/ui/sheet";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LeadTableData } from "./LeadsTab";
 import LeadDetailsTab from "./LeadDetailsTab";
 import ActivitiesTab from "./ActivitiesTab";
 import { StatusItem } from "@/app/dashboard/email-accounts/_components/StatusItem";
+import { leadDrawerDropdownOptions } from "@/utils/constants/leadsTabData";
 
 interface LeadTableDrawerProps {
     isOpen: boolean;
@@ -28,58 +16,13 @@ interface LeadTableDrawerProps {
     defaultTab?: string;
 }
 
-interface StatusOption {
+export interface LeadDrawerOptionTypes {
     value: string;
     label: string;
     icon: LucideIcon;
     color?: string;
     fill?: string;
 };
-
-const statusOptions: StatusOption[] = [
-    {
-        value: 'lead',
-        label: 'Lead',
-        icon: Zap,
-        color: '#6b7280',
-        fill: 'none'
-    },
-    {
-        value: 'interested',
-        label: 'Interested',
-        icon: Zap,
-        color: '#22C55E',
-        fill: '#22C55E'
-    },
-    {
-        value: 'out-of-office',
-        label: 'Out of Office',
-        icon: Zap,
-        color: '#F59E0B',
-        fill: '#F59E0B'
-    },
-    {
-        value: 'wrong-person',
-        label: 'Wrong Person',
-        icon: Zap,
-        color: '#F97316',
-        fill: '#F97316'
-    },
-    {
-        value: 'not-interested',
-        label: 'Not Interested',
-        icon: Zap,
-        color: '#EF4444',
-        fill: '#EF4444'
-    },
-    {
-        value: 'create-new',
-        label: 'Create a new label',
-        icon: Plus,
-        color: '#2184C6',
-        fill: '#2184C6'
-    }
-];
 
 const LeadTableDrawer: React.FC<LeadTableDrawerProps> = ({
     isOpen,
@@ -101,24 +44,25 @@ const LeadTableDrawer: React.FC<LeadTableDrawerProps> = ({
                     </SheetClose>
                 </div>
 
+                {/* leads filter dropdown  */}
                 <Select
                     value={selectedStatus}
                     onValueChange={setSelectedStatus}
                 >
                     <SelectTrigger className="max-w-[232px] md:flex-grow">
                         <SelectValue placeholder="Lead">
-                            {statusOptions.find(option => option.value === selectedStatus) && (
+                            {leadDrawerDropdownOptions.find(option => option.value === selectedStatus) && (
                                 <StatusItem
-                                    label={statusOptions.find(option => option.value === selectedStatus)!.label}
-                                    icon={statusOptions.find(option => option.value === selectedStatus)!.icon}
-                                    color={statusOptions.find(option => option.value === selectedStatus)!.color}
-                                    fill={statusOptions.find(option => option.value === selectedStatus)!.fill}
+                                    label={leadDrawerDropdownOptions.find(option => option.value === selectedStatus)!.label}
+                                    icon={leadDrawerDropdownOptions.find(option => option.value === selectedStatus)!.icon}
+                                    color={leadDrawerDropdownOptions.find(option => option.value === selectedStatus)!.color}
+                                    fill={leadDrawerDropdownOptions.find(option => option.value === selectedStatus)!.fill}
                                 />
                             )}
                         </SelectValue>
                     </SelectTrigger>
                     <SelectContent>
-                        {statusOptions.map((option) => (
+                        {leadDrawerDropdownOptions.map((option) => (
                             <SelectItem key={option.value} value={option.value}>
                                 <StatusItem
                                     label={option.label}
@@ -131,10 +75,11 @@ const LeadTableDrawer: React.FC<LeadTableDrawerProps> = ({
                     </SelectContent>
                 </Select>
 
+                {/* lead details and activities tabs */}
                 <Tabs defaultValue={defaultTab} className="mt-4">
                     <div className="border-b border-gray-500">
                         <TabsList className="w-fit grid grid-cols-2 mb-4">
-                            <TabsTrigger value="leadDetails">Warmup</TabsTrigger>
+                            <TabsTrigger value="leadDetails">Lead Details</TabsTrigger>
                             <TabsTrigger value="activities">Activities</TabsTrigger>
                         </TabsList>
                     </div>

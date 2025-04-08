@@ -1,35 +1,15 @@
+import { activitiesData } from '@/utils/constants/leadsTabData';
 import { Send, Timer } from 'lucide-react'
 import React from 'react'
 
-type Activity = {
+export type ActivityTypes = {
     title: string;
     email: string;
     timeAgo: string;
     step: string;
 };
 
-const activities: Activity[] = [
-    {
-        title: 'Sent',
-        email: 'john@example.com',
-        timeAgo: '2 hours ago',
-        step: 'Step 1',
-    },
-    {
-        title: 'Sent',
-        email: 'jane@example.com',
-        timeAgo: '6 hours ago',
-        step: 'Step 2',
-    },
-    {
-        title: 'Sent',
-        email: 'alex@example.com',
-        timeAgo: '14 hours ago',
-        step: 'Step 3',
-    },
-];
-
-const ActivityCard: React.FC<Activity> = ({ title, email, timeAgo, step }) => (
+const ActivityCard: React.FC<ActivityTypes> = ({ title, email, timeAgo, step }) => (
     <div className='py-2 px-4 bg-[#F1F5F9] rounded-md flex justify-between items-center'>
         <div className='flex gap-2 items-center'>
             <Send className='h-5 w-5 text-[#2563EB]' />
@@ -51,7 +31,7 @@ const ActivityCard: React.FC<Activity> = ({ title, email, timeAgo, step }) => (
 export default function ActivitiesTab() {
     return (
         <div className='flex flex-col gap-3'>
-            {activities.map((activity, index) => (
+            {activitiesData.map((activity, index) => (
                 <ActivityCard key={index} {...activity} />
             ))}
         </div>

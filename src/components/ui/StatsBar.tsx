@@ -1,7 +1,7 @@
 import React from 'react';
 import { LucideIcon } from 'lucide-react';
 
-type StatItem = {
+type StatItemTypes = {
     title: string;
     number: number;
     icon: LucideIcon;
@@ -9,10 +9,10 @@ type StatItem = {
 };
 
 type StatsSectionProps = {
-    stats: StatItem[];
+    stats: StatItemTypes[];
 };
 
-export default function LeadStatsBar({ stats }: StatsSectionProps) {
+export default function StatsBar({ stats }: StatsSectionProps) {
     return (
         <div className="flex items-center justify-evenly bg-white border border-input rounded-md py-2 px-4">
             {stats.map((item, index) => (

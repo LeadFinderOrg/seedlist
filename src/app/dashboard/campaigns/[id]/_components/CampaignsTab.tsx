@@ -1,5 +1,4 @@
 import { DownloadIcon, PauseIcon } from "lucide-react";
-
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AnalyticsTab from "./AnalyticsTab";
@@ -8,7 +7,12 @@ import SequencesTab from "./SequencesTab";
 import ScheduleTab from "./ScheduleTab";
 import OptionsTab from "./OptionsTab";
 
-const tabItems = [
+interface TabItemTypes {
+  value: string;
+  label: string;
+}
+
+const tabItems: TabItemTypes[] = [
   { value: "analytics", label: "Analytics" },
   { value: "leads", label: "Leads" },
   { value: "sequences", label: "Sequences" },
