@@ -1,19 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
+
 import { useParams, useRouter } from "next/navigation";
-import { Button } from '@/components/ui/button';
-import { CirclePlus, LucideIcon, Search } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+
+import { CirclePlus, LucideIcon, Search } from "lucide-react";
+
+import StatsBar from "@/components/ui/StatsBar";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
-import { LeadStatusItem } from './LeadStatusItem';
-import LeadTable from './LeadTable';
-import { statsBarData, statusDropdownOptions } from '@/utils/constants/leadsTabData';
-import StatsBar from '@/components/ui/StatsBar';
+
+import {
+  statsBarData,
+  statusDropdownOptions,
+} from "@/utils/constants/leadsTabData";
+
+import { LeadStatusItem } from "./LeadStatusItem";
+import LeadTable from "./LeadTable";
 
 export interface StatusOptionTypes {
   value: string;
@@ -21,16 +29,9 @@ export interface StatusOptionTypes {
   icon: LucideIcon | null;
   color?: string;
   fill?: string;
-};
+}
 
-export interface LeadStatusItemProps {
-  label: string;
-  icon: LucideIcon | null;
-  color?: string;
-  fill?: string;
-};
-
-export interface LeadTableData {
+export interface LeadTableDataTypes {
   id: string;
   email: string;
   emailProvider: string;
@@ -46,9 +47,9 @@ export default function LeadsTab() {
   const campaignId = params.id;
 
   //states
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [selectedStatus, setSelectedStatus] = useState<string>('all');
-  const [data, setData] = useState<LeadTableData[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [selectedStatus, setSelectedStatus] = useState<string>("all");
+  const [data, setData] = useState<LeadTableDataTypes[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   //navigate to add new lead page handler
@@ -75,7 +76,7 @@ export default function LeadsTab() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <Button variant="primary" size="lg" onClick={handleAddNew}>
+        <Button size="lg" onClick={handleAddNew}>
           <CirclePlus className="text-xl" />
           Add new
         </Button>
@@ -99,18 +100,33 @@ export default function LeadsTab() {
         <StatsBar stats={statsBarData} />
 
         {/* all status select */}
-        <Select
-          value={selectedStatus}
-          onValueChange={setSelectedStatus}
-        >
+        <Select value={selectedStatus} onValueChange={setSelectedStatus}>
           <SelectTrigger className="lg:max-w-[310px] w-full md:flex-grow">
             <SelectValue placeholder="All Statuses">
-              {statusDropdownOptions.find(option => option.value === selectedStatus) && (
+              {statusDropdownOptions.find(
+                (option) => option.value === selectedStatus
+              ) && (
                 <LeadStatusItem
-                  label={statusDropdownOptions.find(option => option.value === selectedStatus)!.label}
-                  icon={statusDropdownOptions.find(option => option.value === selectedStatus)!.icon}
-                  color={statusDropdownOptions.find(option => option.value === selectedStatus)!.color}
-                  fill={statusDropdownOptions.find(option => option.value === selectedStatus)!.fill}
+                  label={
+                    statusDropdownOptions.find(
+                      (option) => option.value === selectedStatus
+                    )!.label
+                  }
+                  icon={
+                    statusDropdownOptions.find(
+                      (option) => option.value === selectedStatus
+                    )!.icon
+                  }
+                  color={
+                    statusDropdownOptions.find(
+                      (option) => option.value === selectedStatus
+                    )!.color
+                  }
+                  fill={
+                    statusDropdownOptions.find(
+                      (option) => option.value === selectedStatus
+                    )!.fill
+                  }
                 />
               )}
             </SelectValue>
@@ -134,5 +150,5 @@ export default function LeadsTab() {
         <LeadTable data={data} loading={loading} />
       </div>
     </div>
-  )
+  );
 }

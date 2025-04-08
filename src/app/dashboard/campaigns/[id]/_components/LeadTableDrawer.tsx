@@ -3,16 +3,16 @@ import { LucideIcon, X } from "lucide-react";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, } from "@/components/ui/sheet";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { LeadTableData } from "./LeadsTab";
+import { LeadTableDataTypes } from "./LeadsTab";
 import LeadDetailsTab from "./LeadDetailsTab";
 import ActivitiesTab from "./ActivitiesTab";
 import { StatusItem } from "@/app/dashboard/email-accounts/_components/StatusItem";
 import { leadDrawerDropdownOptions } from "@/utils/constants/leadsTabData";
 
-interface LeadTableDrawerProps {
+interface LeadTableDrawerPropsTypes {
     isOpen: boolean;
     onOpenChange: (open: boolean) => void;
-    selectedRow: LeadTableData | null;
+    selectedRow: LeadTableDataTypes | null;
     defaultTab?: string;
 }
 
@@ -24,7 +24,7 @@ export interface LeadDrawerOptionTypes {
     fill?: string;
 };
 
-const LeadTableDrawer: React.FC<LeadTableDrawerProps> = ({
+const LeadTableDrawer: React.FC<LeadTableDrawerPropsTypes> = ({
     isOpen,
     onOpenChange,
     selectedRow,

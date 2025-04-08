@@ -17,27 +17,27 @@ import {
 } from "@tanstack/react-table";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
-import { LeadTableData } from "./LeadsTab";
+import { LeadTableDataTypes } from "./LeadsTab";
 import LeadTableDrawer from "./LeadTableDrawer";
 // import TableThreeDot from "./TableThreeDot";
 
-interface LeadTableProps {
-    data: LeadTableData[];
+interface LeadTablePropsTypes {
+    data: LeadTableDataTypes[];
     loading: boolean;
 }
 
-const LeadTable: React.FC<LeadTableProps> = ({ data, loading }) => {
-    const [selectedRow, setSelectedRow] = useState<LeadTableData | null>(null);
+const LeadTable: React.FC<LeadTablePropsTypes> = ({ data, loading }) => {
+    const [selectedRow, setSelectedRow] = useState<LeadTableDataTypes | null>(null);
     const [isSheetOpen, setIsSheetOpen] = useState(false);
     const [defaultTab, setDefaultTab] = useState<string>("leadDetails");
 
-    const handleOpenDrawer = (row: LeadTableData) => {
+    const handleOpenDrawer = (row: LeadTableDataTypes) => {
         setSelectedRow(row);
         setDefaultTab("leadDetails");
         setIsSheetOpen(true);
     };
 
-    const columns: ColumnDef<LeadTableData>[] = [
+    const columns: ColumnDef<LeadTableDataTypes>[] = [
         {
             id: "select",
             header: ({ table }) => (

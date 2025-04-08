@@ -1,7 +1,13 @@
-import { LeadStatusItemProps } from "./LeadsTab";
+import { LucideIcon } from "lucide-react";
 
+interface LeadStatusItemPropsTypes {
+    label: string;
+    icon: LucideIcon | null;
+    color?: string;
+    fill?: string;
+};
 
-export const LeadStatusItem: React.FC<LeadStatusItemProps> = ({ label, icon: Icon, color, fill }) => (
+export const LeadStatusItem: React.FC<LeadStatusItemPropsTypes> = ({ label, icon: Icon, color, fill }) => (
     <div className="flex items-center space-x-2">
         {Icon && <Icon
             size={20}
