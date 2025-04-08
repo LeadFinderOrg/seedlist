@@ -15,7 +15,7 @@ const EmailWarmupStats: React.FC<EmailWarmupStatsProps> = ({
       {/* Header section */}
       <section className="flex items-center justify-between pt-3 pb-4 border-b border-gray-300">
         <div className="flex items-center gap-2">
-          <span className="text-gray-500">
+          <span className="text-slate-800">
             <Clock size={18} />
           </span>
           <span className="text-slate-800 font-medium">Started on{" "}
@@ -46,7 +46,7 @@ const EmailWarmupStats: React.FC<EmailWarmupStatsProps> = ({
             <h3 className="text-slate-800 font-medium pb-1 border-b border-gray-300">Summary for past week</h3>
             <section className="flex flex-wrap gap-6 mt-3">
               <div className="flex items-center gap-2">
-                <span className="text-gray-400">
+                <span className="text-slate-500">
                   <CheckCircle2 size={18} />
                 </span>
                 <span className="font-semibold text-gray-800">{selectedRow?.emailReceived}</span>
@@ -54,7 +54,7 @@ const EmailWarmupStats: React.FC<EmailWarmupStatsProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-gray-400">
+                <span className="text-slate-500">
                   <Send size={18} />
                 </span>
                 <span className="font-semibold text-gray-800">{selectedRow?.emailSent}</span>
@@ -62,7 +62,7 @@ const EmailWarmupStats: React.FC<EmailWarmupStatsProps> = ({
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-gray-400">
+                <span className="text-slate-500">
                   <Shield size={18} />
                 </span>
                 <span className="font-semibold text-gray-800">{selectedRow?.spam}</span>

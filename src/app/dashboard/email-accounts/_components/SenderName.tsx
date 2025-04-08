@@ -35,7 +35,7 @@ const SenderName: React.FC<senderNameProps> = ({
                                     <FormLabel className="block text-sm font-medium">First Name</FormLabel>
                                     <FormControl>
                                         <div className="relative flex items-center mt-1 bg-white">
-                                            <User size={18} color="#1e293b" className="absolute left-3" />
+                                            <User size={18} className="absolute left-3 text-slate-800" />
                                             <Input
                                                 type="text"
                                                 placeholder="Enter first name"
@@ -57,7 +57,7 @@ const SenderName: React.FC<senderNameProps> = ({
                                     <FormLabel className="block text-sm font-medium">Last Name</FormLabel>
                                     <FormControl>
                                         <div className="relative flex items-center mt-1 bg-white">
-                                            <User size={18} color="#1e293b" className="absolute left-3" />
+                                            <User size={18} className="absolute left-3 text-slate-800" />
                                             <Input
                                                 type="text"
                                                 placeholder="Enter last name"
