@@ -12,11 +12,11 @@ export function getScoreInfo(score: number | undefined): ScoreInfo {
   if (score >= 90) {
     return { label: "Excellent", color: "text-emerald-400" };
   } else if (score >= 70) {
-    return { label: "Good", color: "text-green-600" };
+    return { label: "Good", color: "text-emerald-600" };
   } else if (score >= 50) {
     return { label: "Average", color: "text-orange-500" };
   } else if (score >= 30) {
-    return { label: "Poor", color: "text-red-400" };
+    return { label: "Poor", color: "text-red-500" };
   } else {
     return { label: "N/A", color: "text-red-700" };
   }
@@ -61,22 +61,22 @@ const CustomSegmentedArea: React.FC<CustomSegmentedAreaProps> = ({
         const y1 = yScale(nextPoint.data.y);
 
         const scoreInfo = getScoreInfo(currentPoint.data.y);
-        let fillColor = "#9ca3af";
+        let fillColor = "#B91C1C";
         switch (scoreInfo.label) {
           case "Excellent":
             fillColor = "#34D399";
             break;
           case "Good":
-            fillColor = "#10b981";
+            fillColor = "#059669";
             break;
           case "Average":
-            fillColor = "#f59e0b";
+            fillColor = "#F97316";
             break;
           case "Poor":
-            fillColor = "#ef4444";
+            fillColor = "#EF4444";
             break;
           default:
-            fillColor = "#9ca3af";
+            fillColor = "#B91C1C";
         }
 
         const pathD = `
@@ -92,7 +92,7 @@ const CustomSegmentedArea: React.FC<CustomSegmentedAreaProps> = ({
             key={currentPoint.data.x.toString()}
             d={pathD}
             fill={fillColor}
-            opacity={0.15}
+            opacity={0.5}
           />
         );
       })}

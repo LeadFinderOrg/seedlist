@@ -26,7 +26,7 @@ const HealthScoreChart: React.FC = () => {
         </h3>
         <div className="flex items-center space-x-4 mt-2">
           <div className="flex items-center">
-            <span className="h-3 w-3 rounded-full bg-gray-400 mr-1"></span>
+            <span className="h-3 w-3 rounded-full bg-red-700 mr-1"></span>
             <span className="text-xs text-slate-800">N/A</span>
           </div>
           <div className="flex items-center">
@@ -34,11 +34,11 @@ const HealthScoreChart: React.FC = () => {
             <span className="text-xs text-slate-800">Poor</span>
           </div>
           <div className="flex items-center">
-            <span className="h-3 w-3 rounded-full bg-amber-500 mr-1"></span>
+            <span className="h-3 w-3 rounded-full bg-orange-500 mr-1"></span>
             <span className="text-xs text-slate-800">Average</span>
           </div>
           <div className="flex items-center">
-            <span className="h-3 w-3 rounded-full bg-green-500 mr-1"></span>
+            <span className="h-3 w-3 rounded-full bg-emerald-600 mr-1"></span>
             <span className="text-xs text-slate-800">Good</span>
           </div>
           <div className="flex items-center">
@@ -103,7 +103,7 @@ const HealthScoreChart: React.FC = () => {
             const { label: scoreLabel, color: scoreColor } =
               getScoreInfo(score);
             return (
-              <div className="p-3 bg-white rounded shadow text-sm">
+              <div className="p-3 bg-white rounded shadow text-sm font-semibold">
                 <div className="font-semibold">{formattedDate}</div>
                 <div className="text-slate-800">{dayOfWeek}</div>
                 <hr className="my-2" />
@@ -116,9 +116,10 @@ const HealthScoreChart: React.FC = () => {
           theme={{
             grid: {
               line: {
-                stroke: "#e5e7eb",
+                stroke: "#e0e0e0",
                 strokeWidth: 1,
                 strokeDasharray: "3 3",
+                
               },
             },
           }}
