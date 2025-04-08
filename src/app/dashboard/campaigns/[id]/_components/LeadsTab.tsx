@@ -23,14 +23,7 @@ export interface StatusOptionTypes {
   fill?: string;
 };
 
-export interface LeadStatusItemProps {
-  label: string;
-  icon: LucideIcon | null;
-  color?: string;
-  fill?: string;
-};
-
-export interface LeadTableData {
+export interface LeadTableDataTypes {
   id: string;
   email: string;
   emailProvider: string;
@@ -48,7 +41,7 @@ export default function LeadsTab() {
   //states
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
-  const [data, setData] = useState<LeadTableData[]>([]);
+  const [data, setData] = useState<LeadTableDataTypes[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   //navigate to add new lead page handler
