@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Info } from "lucide-react";
+
 interface MetricCardProps {
   icon: React.ReactNode;
   title: string;
@@ -19,14 +21,12 @@ export const MetricCard: React.FC<MetricCardProps> = ({
 }) => {
   return (
     <div className="p-4 flex flex-col items-center">
-      <div className="mb-4">{icon}</div>
+      <div className="mb-3">{icon}</div>
 
-      <div className="flex items-center mb-[10px]">
-        <span className="text-slate-700 text-sm">{title}</span>
+      <div className="flex items-center mb-[10px] gap-2">
+        <span className="text-slate-700 text-base">{title}</span>
         {hasInfoIcon && (
-          <div className="ml-1 rounded-full border border-gray-300 w-4 h-4 flex items-center justify-center">
-            <span className="text-xs text-gray-500">i</span>
-          </div>
+          <Info size={18} className="text-slate-700" strokeWidth={1} />
         )}
       </div>
 

@@ -11,7 +11,7 @@ import { MetricCard } from "./MetricCard";
 
 export default function AnalyticsMetrics() {
   return (
-    <div className="w-1/3 border border-gray-300 rounded-lg grid grid-cols-2 p-2">
+    <div className="md:w-1/3 w-full border border-gray-300 rounded-lg grid grid-cols-2 p-2">
       <div className="border-b border-r">
         <MetricCard
           icon={<User className="w-8 h-8 text-gray-800" />}

@@ -13,7 +13,7 @@ interface AnalyticsChartProps {
 
 const AnalyticsChart: React.FC<AnalyticsChartProps> = ({ chartData }) => {
   return (
-    <div className="w-2/3 bg-white p-6 rounded-lg border border-gray-300">
+    <div className="md:w-2/3 w-full bg-white p-6 rounded-lg border border-gray-300">
       <div className="w-full h-96">
         <ResponsiveLine
           data={chartData}

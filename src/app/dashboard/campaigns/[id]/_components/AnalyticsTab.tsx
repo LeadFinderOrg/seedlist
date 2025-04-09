@@ -22,7 +22,7 @@ export default function AnalyticsTab() {
         </div>
       </section>
       <section className="border border-gray-400 rounded-lg p-4 mt-4">
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex justify-between items-center gap-4 md:flex-row flex-col">
           <AnalyticsMetrics />
           <AnalyticsChart chartData={CHART_VALUE} />
         </div>
