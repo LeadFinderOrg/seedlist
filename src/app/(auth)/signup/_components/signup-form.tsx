@@ -95,7 +95,7 @@ export const SignupForm = () => {
                   <FormItem>
                     <FormLabel>First Name</FormLabel>
                     <div className="relative flex items-center !mt-1">
-                      <User size={18} color="#1e293b" className="absolute left-3" />
+                      <User size={18} className="absolute left-3 text-slate-800" />
                       <FormControl>
                         <Input type="text" placeholder="Enter first name" className="pl-10" {...field} />
                       </FormControl>
@@ -111,7 +111,7 @@ export const SignupForm = () => {
                   <FormItem>
                     <FormLabel>Last Name</FormLabel>
                     <div className="relative flex items-center !mt-1">
-                      <User size={18} color="#1e293b" className="absolute left-3" />
+                      <User size={18} className="absolute left-3 text-slate-800" />
                       <FormControl>
                         <Input type="text" placeholder="Enter last name" className="pl-10" {...field} />
                       </FormControl>
@@ -130,7 +130,7 @@ export const SignupForm = () => {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <div className="relative flex items-center !mt-1">
-                    <Mail size={18} color="#1e293b" className="absolute left-3" />
+                    <Mail size={18} className="absolute left-3 text-slate-800" />
                     <FormControl>
                       <Input type="email" placeholder="Enter email" className="pl-10" {...field} />
                     </FormControl>
@@ -148,7 +148,7 @@ export const SignupForm = () => {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <div className="relative flex items-center !mt-1">
-                    <Lock size={18} color="#1e293b" className="absolute left-3" />
+                    <Lock size={18} className="absolute left-3 text-slate-800" />
                     <FormControl>
                       <Input
                         type={showPassword ? "text" : "password"}
@@ -163,9 +163,9 @@ export const SignupForm = () => {
                       className="absolute right-3 text-slate-800"
                     >
                       {showPassword ? (
-                        <Eye size={20} color="#1e293b" />
-                      ) : (
-                        <EyeOff size={20} color="#1e293b" />
+                        <Eye size={20} className="text-slate-800"/>
+                      )  : (
+                        <EyeOff size={20} className="text-slate-800"/>
                       )}
                     </button>
                   </div>
@@ -182,7 +182,7 @@ export const SignupForm = () => {
                 <FormItem>
                   <FormLabel>Confirm Password</FormLabel>
                   <div className="relative flex items-center !mt-1 !mb-2">
-                    <Lock size={18} color="#1e293b" className="absolute left-3" />
+                    <Lock size={18} className="absolute left-3 text-slate-800" />
                     <FormControl>
                       <Input
                         type={showConfirmPassword ? "text" : "password"}
@@ -197,9 +197,9 @@ export const SignupForm = () => {
                       className="absolute right-3 text-slate-800"
                     >
                       {showConfirmPassword ? (
-                        <Eye size={20} color="#1e293b" />
+                        <Eye size={20} className="text-slate-800"/>
                       ) : (
-                        <EyeOff size={20} color="#1e293b" />
+                        <EyeOff size={20} className="text-slate-800"/>
                       )}
                     </button>
                   </div>
@@ -208,7 +208,7 @@ export const SignupForm = () => {
               )}
             />
 
-            <Button className="w-full" variant="primary" size="lg" type="submit">
+            <Button className="w-full bg-[#2184C6] hover:bg-[#2184C6]/90" size="lg" type="submit">
               Sign Up
             </Button>
           </form>

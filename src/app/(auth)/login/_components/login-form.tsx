@@ -87,7 +87,7 @@ export default function LoginForm() {
                 <FormItem>
                   <FormLabel>Email</FormLabel>
                   <div className="relative flex items-center !mt-1">
-                    <Mail size={18} color="#1e293b" className="absolute left-3" />
+                    <Mail size={18} className="absolute left-3 text-slate-800" />
                     <FormControl>
                       <Input
                         type="email"
@@ -110,7 +110,7 @@ export default function LoginForm() {
                 <FormItem>
                   <FormLabel>Password</FormLabel>
                   <div className="relative flex items-center !mt-1">
-                    <Lock size={18} color="#1e293b" className="absolute left-3" />
+                    <Lock size={18} className="absolute left-3 text-slate-800" />
                     <FormControl>
                       <Input
                         type={showPassword ? "text" : "password"}
@@ -125,9 +125,9 @@ export default function LoginForm() {
                       className="absolute right-3 text-slate-800"
                     >
                       {showPassword ? (
-                        <Eye size={20} color="#1e293b" />
+                        <Eye size={20} className="text-slate-800" />
                       ) : (
-                        <EyeOff size={20} color="#1e293b" />
+                        <EyeOff size={20} className="text-slate-800" />
                       )}
                     </button>
                   </div>
@@ -144,8 +144,7 @@ export default function LoginForm() {
 
             {/* Sign In Button */}
             <Button
-              className="w-full mt-6"
-              variant="primary"
+              className="w-full mt-6 bg-[#2184C6] hover:bg-[#2184C6]/90"
               size="lg"
               type="submit"
             >
