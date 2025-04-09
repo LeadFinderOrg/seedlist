@@ -49,7 +49,7 @@ export default function LeadsTab() {
 
   //navigate to add new lead page handler
   const handleAddNew = () => {
-    router.push(`/dashboard/campaigns/${campaignId}/leads/new`);
+    router.push(`/dashboard/campaigns/${campaignId}/leads/add-new`);
   };
 
   useEffect(() => {

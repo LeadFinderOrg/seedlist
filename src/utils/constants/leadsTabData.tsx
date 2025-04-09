@@ -1,7 +1,12 @@
 import { ActivityTypes } from "@/app/dashboard/campaigns/[id]/_components/ActivitiesTab";
 import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadsTab";
 import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadTableDrawer";
-import { CircleCheck, ListChecks, MailOpen, Plus, Reply, UserCheck, Users, Zap } from "lucide-react";
+import { AddLeadsOptionTypes } from "@/app/dashboard/campaigns/[id]/leads/add-new/_components/LeadsOptions";
+
+import { CircleCheck, FileUp, ListChecks, Mail, MailOpen, Plus, Reply, UserCheck, Users, Zap } from "lucide-react";
+
+const google = "/images/google.png";
+
 
 const statsBarData = [
     {
@@ -147,9 +152,28 @@ const leadDrawerDropdownOptions: LeadDrawerOptionTypes[] = [
     }
 ];
 
+const addLeadsOptionData: AddLeadsOptionTypes[] = [
+    {
+        icon: <FileUp className="h-6 w-6 text-slate" />,
+        title: "Upload CSV",
+        slug: "upload-csv"
+    },
+    {
+        icon: <Mail className="h-6 w-6 text-slate" />,
+        title: "Enter Emails Manually",
+        slug: "enter-emails-manually"
+    },
+    {
+        image: google,
+        title: "Use Google Sheets",
+        slug: "use-google-sheets"
+    }
+];
+
 export {
     statsBarData,
     activitiesData,
     statusDropdownOptions,
     leadDrawerDropdownOptions,
+    addLeadsOptionData
 }
