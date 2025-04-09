@@ -56,7 +56,7 @@ const TableDataFilter: React.FC = () => {
             variant="outline"
             size="lg"
           >
-            <Server size={20} color="#6b7280" className="mr-2" />
+            <Server size={20} className="mr-2 text-gray-500" />
             <span>Test Domain Setup</span>
           </Button>
 
@@ -99,7 +99,7 @@ const TableDataFilter: React.FC = () => {
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Sort by">
                 <div className="flex items-center space-x-2">
-                  <ArrowDownWideNarrow size={20} color="#6b7280" />
+                  <ArrowDownWideNarrow size={20} className="text-gray-500" />
                   <span className="truncate">
                     {SORT_OPTIONS?.find(option => option.value === selectedSort)?.label}
                   </span>

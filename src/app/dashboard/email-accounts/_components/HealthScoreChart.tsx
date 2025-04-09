@@ -7,6 +7,9 @@ import { HealthScoreData } from "@/utils/constants/chartData";
 
 import CustomSegmentedArea, { getScoreInfo } from "./CustomSegmentedArea";
 
+const STROKE_COLOR = "#e0e0e0";
+const LINE_COLOR = "#F97316";
+
 const HealthScoreChart: React.FC = () => {
   const chartData = [
     {
@@ -85,8 +88,8 @@ const HealthScoreChart: React.FC = () => {
             "mesh",
             "legends",
           ]}
-          colors={["#F97316"]}
-          lineWidth={3}
+          colors={[LINE_COLOR]}
+          lineWidth={2}
           pointSize={8}
           enableGridX={false}
           enableGridY={true}
@@ -116,7 +119,7 @@ const HealthScoreChart: React.FC = () => {
           theme={{
             grid: {
               line: {
-                stroke: "#e0e0e0",
+                stroke: STROKE_COLOR,
                 strokeWidth: 1,
                 strokeDasharray: "3 3",
                 

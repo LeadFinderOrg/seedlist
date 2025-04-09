@@ -64,7 +64,7 @@ export const SignupForm = () => {
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center min-h-screen bg-[#eaf2ff]">
+    <div className="relative flex flex-col items-center justify-center min-h-screen bg-blue-50">
       {/* Background Image */}
       <Image
         src={loginBackground}
