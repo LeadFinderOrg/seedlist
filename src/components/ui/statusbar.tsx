@@ -12,7 +12,7 @@ type StatsSectionProps = {
     stats: StatItemTypes[];
 };
 
-export default function StatsBar({ stats }: StatsSectionProps) {
+export default function StatusBar({ stats }: StatsSectionProps) {
     return (
         <div className="flex items-center justify-evenly bg-white border border-input rounded-md py-2 px-4">
             {stats.map((item, index) => (

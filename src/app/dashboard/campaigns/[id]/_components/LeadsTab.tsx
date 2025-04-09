@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams, useRouter } from "next/navigation";
-
 import { CirclePlus, LucideIcon, Search } from "lucide-react";
-
-import StatsBar from "@/components/ui/StatsBar";
+import StatusBar from "@/components/ui/statusbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,12 +11,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import {
   statsBarData,
   statusDropdownOptions,
 } from "@/utils/constants/leadsTabData";
-
 import { LeadStatusItem } from "./LeadStatusItem";
 import LeadTable from "./LeadTable";
 
@@ -76,7 +71,7 @@ export default function LeadsTab() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <Button size="lg" onClick={handleAddNew}>
+        <Button size="lg" variant="primary" onClick={handleAddNew}>
           <CirclePlus className="text-xl" />
           Add new
         </Button>
@@ -97,7 +92,7 @@ export default function LeadsTab() {
       </div>
       <div className="flex justify-between items-center mt-3">
         {/* stats bar */}
-        <StatsBar stats={statsBarData} />
+        <StatusBar stats={statsBarData} />
 
         {/* all status select */}
         <Select value={selectedStatus} onValueChange={setSelectedStatus}>

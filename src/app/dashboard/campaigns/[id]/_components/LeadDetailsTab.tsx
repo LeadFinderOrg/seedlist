@@ -193,7 +193,7 @@ export default function LeadDetailsTab() {
             </div>}
 
           <div className="flex justify-end !mt-8">
-            <Button type="submit" className="bg-[#2184C6] hover:bg-[#2184C6]">Save</Button>
+            <Button type="submit" variant="primary">Save</Button>
           </div>
         </form>
       </Form>
