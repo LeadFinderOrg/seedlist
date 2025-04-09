@@ -30,7 +30,7 @@ const EmailWarmupStats: React.FC<EmailWarmupStatsProps> = ({
         <div className="flex items-center gap-2">
           <Switch id="warmup" defaultChecked={selectedRow?.warmupEnable} />
           <div className="flex items-center gap-2">
-            <Zap color="#2184c6" size="20" fill='#2184c6' />
+            <Zap className='text-customBlue' size="20" />
             <p className="font-medium text-slate-800">Enable Warmup</p>
           </div>
         </div>

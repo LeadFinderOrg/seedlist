@@ -54,7 +54,7 @@ const EmailAccountsRoot = () => {
   return (
     <div>
       <section className="flex justify-between items-center">
-        <Button className="bg-[#2184C6] hover:bg-[#2184C6]/90"  size="lg" onClick={handleAddNew}>
+        <Button className="bg-customBlue hover:bg-customBlue/90"  size="lg" onClick={handleAddNew}>
           <CirclePlus className="text-xl" />
           Add new
         </Button>

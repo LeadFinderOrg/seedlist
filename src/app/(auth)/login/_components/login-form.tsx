@@ -144,7 +144,7 @@ export default function LoginForm() {
 
             {/* Sign In Button */}
             <Button
-              className="w-full mt-6 bg-[#2184C6] hover:bg-[#2184C6]/90"
+              className="w-full mt-6 bg-customBlue hover:bg-customBlue/90"
               size="lg"
               type="submit"
             >

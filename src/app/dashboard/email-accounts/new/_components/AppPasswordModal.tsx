@@ -176,7 +176,7 @@ const AppPasswordModal: React.FC<AppPasswordModalProps> = ({ onSuccess, open }) 
                             </Button>
                         </DialogClose>
 
-                        <Button variant="primary" type="submit">
+                        <Button className="bg-customBlue hover:bg-customBlue/90" type="submit">
                             Connect
                         </Button>
                     </div>

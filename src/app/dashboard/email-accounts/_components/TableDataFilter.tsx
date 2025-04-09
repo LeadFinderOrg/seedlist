@@ -7,31 +7,16 @@ import {
   SelectTrigger,
   SelectValue
 } from "@/components/ui/select";
+import { SORT_OPTIONS, STATUS_OPTIONS } from "@/utils/constants/email-options";
 import {
   ArrowDownWideNarrow,
-  Ban,
-  CircleAlert,
-  Server,
-  ListChecks,
   LucideIcon,
   Search,
-  Zap
+  Server
 } from "lucide-react";
 import React, { useState } from 'react';
 import { StatusItem } from "./StatusItem";
 
-interface StatusOption {
-  value: string;
-  label: string;
-  icon: LucideIcon;
-  color?: string;
-  fill?: string;
-};
-
-interface SortOption {
-  value: string;
-  label: string;
-};
 
 export interface StatusItemProps {
   label: string;
@@ -44,52 +29,6 @@ const TableDataFilter: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [selectedSort, setSelectedSort] = useState<string>('no-sorting');
-
-  const statusOptions: StatusOption[] = [
-    {
-      value: 'all',
-      label: 'All Statuses',
-      icon: ListChecks,
-      color: '#6b7280',
-      fill: 'none'
-    },
-    {
-      value: 'warmup-active',
-      label: 'Warmup Active',
-      icon: Zap,
-      color: '#2184C6',
-      fill: '#2184C6'
-    },
-    {
-      value: 'warmup-paused',
-      label: 'Warmup Paused',
-      icon: Zap,
-      color: '#6b7280',
-      fill: 'none'
-    },
-    {
-      value: 'no-custom-tracking',
-      label: 'No Custom Tracking Domain',
-      icon: Ban,
-      color: '#e9a616',
-      fill: 'none'
-    },
-    {
-      value: 'has-errors',
-      label: 'Has Errors',
-      icon: CircleAlert,
-      color: '#e96016',
-      fill: 'none'
-    }
-  ];
-
-  const sortOptions: SortOption[] = [
-    { value: 'no-sorting', label: 'No Sorting' },
-    { value: 'sort-by-newest', label: 'Sort by Newest' },
-    { value: 'sort-by-oldest', label: 'Sort by Oldest' },
-    { value: 'alphabetical', label: 'Alphabetical' },
-    { value: 'reverse-alphabetical', label: 'Reverse Alphabetical' },
-  ];
 
   return (
     <div className="w-full mt-6">
@@ -128,24 +67,24 @@ const TableDataFilter: React.FC = () => {
           >
             <SelectTrigger className="w-full md:flex-grow">
               <SelectValue placeholder="All Statuses">
-                {statusOptions.find(option => option.value === selectedStatus) && (
+                {STATUS_OPTIONS?.find(option => option.value === selectedStatus) && (
                   <StatusItem
-                    label={statusOptions.find(option => option.value === selectedStatus)!.label}
-                    icon={statusOptions.find(option => option.value === selectedStatus)!.icon}
-                    color={statusOptions.find(option => option.value === selectedStatus)!.color}
-                    fill={statusOptions.find(option => option.value === selectedStatus)!.fill}
+                    label={STATUS_OPTIONS.find(option => option.value === selectedStatus)!.label}
+                    icon={STATUS_OPTIONS.find(option => option.value === selectedStatus)!.icon}
+                    color={STATUS_OPTIONS.find(option => option.value === selectedStatus)!.color}
+                    fill={STATUS_OPTIONS.find(option => option.value === selectedStatus)!.fill}
                   />
                 )}
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              {statusOptions.map((option) => (
+              {STATUS_OPTIONS?.map((option) => (
                 <SelectItem key={option.value} value={option.value}>
                   <StatusItem
-                    label={option.label}
-                    icon={option.icon}
-                    color={option.color}
-                    fill={option.fill}
+                   label={option.label}
+                   icon={option.icon}
+                   color={option.color}
+                   fill={option.fill}
                   />
                 </SelectItem>
               ))}
@@ -162,13 +101,13 @@ const TableDataFilter: React.FC = () => {
                 <div className="flex items-center space-x-2">
                   <ArrowDownWideNarrow size={20} color="#6b7280" />
                   <span className="truncate">
-                    {sortOptions.find(option => option.value === selectedSort)?.label}
+                    {SORT_OPTIONS?.find(option => option.value === selectedSort)?.label}
                   </span>
                 </div>
               </SelectValue>
             </SelectTrigger>
             <SelectContent>
-              {sortOptions.map((option) => (
+              {SORT_OPTIONS?.map((option) => (
                 <SelectItem key={option.value} value={option.value}>
                   <div className="flex items-center space-x-2">
                     <span>{option.label}</span>

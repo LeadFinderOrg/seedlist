@@ -4,7 +4,7 @@ import { Campaign } from "./CampaignTable";
 
 export default function StatusBadge({ status }: { status: Campaign["status"] }) {
     const styles = {
-        Active: "bg-[#2184C6] hover:bg-[#2184C6] rounded-full",
+        Active: "bg-customBlue hover:bg-customBlue rounded-full",
         Completed: "bg-green-500 hover:bg-green-500 rounded-full",
         Paused: "bg-gray-400 hover:bg-gray-400 rounded-full",
     };

@@ -101,7 +101,7 @@ const CampaignSettings: React.FC<CampaignSettingsProps> = ({
                         </FormControl>
                         <FormLabel htmlFor="enable-toggle" className="text-sm font-medium">Enable</FormLabel>
                       </div>
-                      <Badge className="bg-[#2184C6]" >Recommended</Badge>
+                      <Badge className="bg-customBlue" >Recommended</Badge>
                     </div>
                     <FormMessage />
                   </FormItem>

@@ -208,7 +208,7 @@ export const SignupForm = () => {
               )}
             />
 
-            <Button className="w-full bg-[#2184C6] hover:bg-[#2184C6]/90" size="lg" type="submit">
+            <Button className="w-full bg-customBlue hover:bg-customBlue/90" size="lg" type="submit">
               Sign Up
             </Button>
           </form>

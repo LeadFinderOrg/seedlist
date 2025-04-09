@@ -307,7 +307,7 @@ const ImapModal: React.FC<ImapModalProps> = ({ onSuccess, open }) => {
                                 </Button>
                             </DialogClose>
 
-                            <Button variant="primary" type="submit">
+                            <Button className="bg-customBlue hover:bg-customBlue/90" type="submit">
                                 Connect
                             </Button>
                         </div>
