@@ -11,7 +11,7 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 import { BulkOptions } from './BulkOptions';
-import { Import, LucideIcon } from 'lucide-react';
+import { Import } from 'lucide-react';
 import { bulkOptionsData } from '@/utils/constants/bulkInsertManualData';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';

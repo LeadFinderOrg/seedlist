@@ -9,20 +9,6 @@ export default {
 	],
 	theme: {
 		extend: {
-			fontFamily: {
-				sans: 'var(--font-sans)',
-			},
-			fontSize: {
-				xs: 'var(--text-xs)',
-				sm: 'var(--text-sm)',
-				base: 'var(--text-base)',
-				lg: 'var(--text-lg)',
-				xl: 'var(--text-xl)',
-				'2xl': 'var(--text-2xl)',
-				'3xl': 'var(--text-3xl)',
-				'4xl': 'var(--text-4xl)',
-				'5xl': 'var(--text-5xl)',
-			},
 			colors: {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
@@ -73,16 +59,6 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				},
-				slate: {
-					DEFAULT: 'var(--slate-800)',
-					400: 'var(--slate-400)',
-					800: 'var(--slate-800)',
-				},
-				gray: {
-					DEFAULT: 'var(--gray-400)',
-					100: 'var(--gray-100)',
-					400: 'var(--gray-400)',
 				},
 			},
 			borderRadius: {
