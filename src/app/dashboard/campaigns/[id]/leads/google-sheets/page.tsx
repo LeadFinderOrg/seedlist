@@ -4,9 +4,9 @@ import { Button } from '@/components/ui/button';
 import { ChevronLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import React from 'react'
-import UploadCSVRoot from './_components/UploadCSVRoot';
+import GoogleSheetsRoot from './_components/GoogleSheetsRoot';
 
-export default function UploadCSVPage() {
+export default function GoogleSheetsPage() {
     const router = useRouter();
 
     const handleBack = () => {
@@ -19,7 +19,7 @@ export default function UploadCSVPage() {
                 Back
             </Button>
 
-            <UploadCSVRoot />
+            <GoogleSheetsRoot />
         </div>
     )
 }

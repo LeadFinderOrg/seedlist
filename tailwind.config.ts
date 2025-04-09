@@ -76,6 +76,8 @@ export default {
 				},
 				slate: {
 					DEFAULT: 'var(--slate-800)',
+					400: 'var(--slate-400)',
+					800: 'var(--slate-800)',
 				},
 				gray: {
 					DEFAULT: 'var(--gray-400)',
