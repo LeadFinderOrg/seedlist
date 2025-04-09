@@ -97,7 +97,7 @@ const EmailAccountTable: React.FC<EmailAccountTableProps> = ({ data, loading }) 
           onClick={(e) => e.stopPropagation()}
         >
           <Button variant="ghost" size="icon" className="h-8 w-8">
-            <Zap color="#9CA3AF" />
+            <Zap className="text-gray-400" />
           </Button>
 
           <TableThreeDot rowData={row.original} onOptionSelect={handleOptionSelect} />

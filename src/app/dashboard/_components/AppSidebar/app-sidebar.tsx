@@ -32,7 +32,7 @@ export function AppSidebar() {
       <div className="flex flex-col items-center gap-4 py-4 mt-auto">
         <NavItem
           href="/settings"
-          icon={<Settings color="#1d4ed8" strokeWidth={2.25} />}
+          icon={<Settings className="text-blue-700" strokeWidth={2.25} />}
           label="Settings"
         />
       </div>

@@ -109,7 +109,7 @@ const OutlookModal: React.FC<OutlookModalProps> = ({ onSuccess }) => {
                     </Button>
                 </DialogClose>
 
-                <Button variant="primary" onClick={onSuccess}>
+                <Button className="bg-customBlue hover:bg-customBlue/90" onClick={onSuccess}>
                     Yes, SMTP has been enabled <ChevronRight />
                 </Button>
             </div>

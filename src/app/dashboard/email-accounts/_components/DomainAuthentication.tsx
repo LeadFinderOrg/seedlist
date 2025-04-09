@@ -22,7 +22,7 @@ const DomainAuthentication = () => {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
-                <RefreshCw className="h-5 w-5 text-purple-600 cursor-pointer" />
+                <RefreshCw className="h-5 w-5 text-purple-700 cursor-pointer" />
               </TooltipTrigger>
               <TooltipContent>
                 <p>Refresh status</p>
@@ -48,14 +48,14 @@ const DomainAuthentication = () => {
                   </span>
                   <Tooltip>
                     <TooltipTrigger>
-                      <Info color="#475569" strokeWidth={1} />
+                      <Info className="text-slate-600" strokeWidth={1} />
                     </TooltipTrigger>
                     <TooltipContent className="w-56">
                       <p>{protocol.description}</p>
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <Button variant="success" size="sm">
+                <Button className="bg-emerald-400 hover:bg-emerald-400/90" size="sm">
                   {protocol.status}
                 </Button>
               </div>
