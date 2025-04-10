@@ -1,6 +1,6 @@
 import { ActivityTypes } from "@/app/dashboard/campaigns/[id]/_components/ActivitiesTab";
 import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadsTab";
-import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadTableDrawer";
+import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/lead/LeadTableDrawer";
 import { AddLeadsOptionTypes } from "@/app/dashboard/campaigns/[id]/leads/add-new/_components/LeadsOptions";
 import { StatItemTypes } from "@/components/ui/statusbar";
 

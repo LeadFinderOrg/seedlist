@@ -5,7 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LeadTableDataTypes } from "./LeadsTab";
 import LeadDetailsTab from "./LeadDetailsTab";
-import ActivitiesTab from "./ActivitiesTab";
+import ActivitiesTab from "../ActivitiesTab";
 import { StatusItem } from "@/app/dashboard/email-accounts/_components/StatusItem";
 import { leadDrawerDropdownOptions } from "@/utils/constants/leadsTabData";
 
