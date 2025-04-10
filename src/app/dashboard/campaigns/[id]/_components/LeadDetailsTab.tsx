@@ -133,7 +133,7 @@ export default function LeadDetailsTab() {
               onClick={() => setIsAddVariable(true)}
             >
               <div className="flex items-center gap-2">
-                <CirclePlus className="h-5 w-5 text-[#2184C6]" /> <span className="text-[14px] text-[#2184C6]">Add Variable</span>
+                <CirclePlus className="h-5 w-5 text-customBlue" /> <span className="text-[14px] text-customBlue">Add Variable</span>
               </div>
             </div>}
 
@@ -193,7 +193,7 @@ export default function LeadDetailsTab() {
             </div>}
 
           <div className="flex justify-end !mt-8">
-            <Button type="submit" variant="primary">Save</Button>
+            <Button type="submit" className="bg-customBlue hover:bg-customBlue/90">Save</Button>
           </div>
         </form>
       </Form>

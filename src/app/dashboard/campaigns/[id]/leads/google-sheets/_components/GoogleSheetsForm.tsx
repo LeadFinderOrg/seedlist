@@ -55,7 +55,7 @@ export default function GoogleSheetsForm() {
 
             {/* submit button */}
             <div className='flex items-center justify-center'>
-                <Button variant="primary" type="submit">
+                <Button type="submit" className="bg-customBlue hover:bg-customBlue/90">
                     <Import className='text-white h-5 w-5' />
                     <span className='text-sm font-medium'>Import emails</span>
                 </Button>

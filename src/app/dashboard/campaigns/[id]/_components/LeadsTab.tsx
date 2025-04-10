@@ -71,7 +71,7 @@ export default function LeadsTab() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <Button size="lg" variant="primary" onClick={handleAddNew}>
+        <Button size="lg" className="bg-customBlue hover:bg-customBlue/90" onClick={handleAddNew}>
           <CirclePlus className="text-xl" />
           Add new
         </Button>
