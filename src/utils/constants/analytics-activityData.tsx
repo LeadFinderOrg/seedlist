@@ -1,4 +1,20 @@
-import { CornerDownLeft, RefreshCw, Send } from "lucide-react";
+import {
+  CornerDownLeft,
+  Filter,
+  Link,
+  LucideIcon,
+  MailOpen,
+  RefreshCw,
+  Send,
+} from "lucide-react";
+
+export interface FilterOption {
+  value: string;
+  label: string;
+  icon: LucideIcon;
+  color?: string;
+  fill?: string;
+}
 
 interface ActivityItems {
   id: string;
@@ -8,6 +24,12 @@ interface ActivityItems {
   timestamp: string;
   step: number;
 }
+
+const ICON_COLOR_BLUE = "#1d4ed8";
+const INACTIVE_COLOR = "#6b7280";
+const ICON_COLOR_YELLOW = "#e9a616";
+const ICON_COLOR_RED = "#e96016";
+const ICON_COLOR_PURPLE = "#a855f7";
 
 export const activityData: ActivityItems[] = [
   {
@@ -77,3 +99,48 @@ export const GET_ACTIVITY_TYPE_LABEL = (type: string) => {
       return "Sent";
   }
 };
+
+export const FILTER_OPTIONS: FilterOption[] = [
+  {
+    value: "no-filter",
+    label: "No Filter",
+    icon: Filter,
+    color: INACTIVE_COLOR,
+    fill: "none",
+  },
+  {
+    value: "email-sent",
+    label: "Email Sent",
+    icon: Send,
+    color: ICON_COLOR_BLUE,
+    fill: "none",
+  },
+  {
+    value: "email-opened",
+    label: "Email Opened",
+    icon: MailOpen,
+    color: ICON_COLOR_YELLOW,
+    fill: "none",
+  },
+  {
+    value: "reply-received",
+    label: "Reply Received",
+    icon: CornerDownLeft,
+    color: ICON_COLOR_RED,
+    fill: "none",
+  },
+  {
+    value: "link-clicked",
+    label: "Link Clicked",
+    icon: Link,
+    color: ICON_COLOR_PURPLE,
+    fill: "none",
+  },
+  {
+    value: "auto-reply",
+    label: "Auto Reply",
+    icon: RefreshCw,
+    color: ICON_COLOR_YELLOW,
+    fill: "none",
+  },
+];

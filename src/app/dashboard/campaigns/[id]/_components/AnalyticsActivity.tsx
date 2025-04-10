@@ -1,47 +1,96 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Clock } from "lucide-react";
+import { Search } from "lucide-react";
 
+import { Input } from "@/components/ui/input";
 import {
-  GET_ACTIVITY_ICONS,
-  GET_ACTIVITY_TYPE_LABEL,
-  activityData,
-} from "@/utils/constants/analytics-activityData";
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
+import { FILTER_OPTIONS } from "@/utils/constants/analytics-activityData";
+
+import AnalyticsActivityTable from "./AnalyticsActivityTable";
+import { FilterItem } from "./FilterItem";
 
 const AnalyticsActivity: React.FC = () => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [filterData, setFilterData] = useState<string>("no-filter");
+
   return (
-    <div className="mt-4">
-      {activityData?.map((email) => (
-        <div key={email.id} className="mb-2">
-          <div className="hover:bg-gray-100 bg-gray-100 flex items-center justify-between rounded-lg">
-            <div className="py-4 px-4 whitespace-nowrap">
-              <div className="flex items-center">
-                <div className="flex-shrink-0 h-8 w-8 flex items-center justify-center">
-                  {GET_ACTIVITY_ICONS(email.type)}
-                </div>
-                <div className="ml-4">
-                  <div className="text-base font-medium text-slate-800">
-                    {GET_ACTIVITY_TYPE_LABEL(email.type)}
-                  </div>
-                  <div className="text-xs text-gray-500">{email.sender}</div>
-                </div>
-              </div>
-            </div>
-            <div className="px-4 py-4 whitespace-nowrap text-sm text-slate-800">
-              {email.email}
-            </div>
-            <div className="px-4 py-4 whitespace-nowrap text-right">
-              <div className="flex items-center justify-end">
-                <Clock size={14} className="text-gray-500 mr-1" />
-                <span className="text-xs text-gray-500">{email.timestamp}</span>
-              </div>
-            </div>
-            <div className="px-4 py-4 whitespace-nowrap text-sm text-right">
-              <span className="">Step {email.step}</span>
-            </div>
+    <div className="mt-6 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-6">
+        <div className="md:col-span-3 w-full">
+          <div className="relative">
+            <Input
+              type="text"
+              placeholder="Search..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="pl-10 w-full"
+            />
+            <Search
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+              size={20}
+            />
           </div>
         </div>
-      ))}
+
+        <div className="hidden md:block md:col-span-6"></div>
+
+        <div className="col-span-1 md:col-span-3 flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-3">
+          {/* All statuses select */}
+          <Select value={filterData} onValueChange={setFilterData}>
+            <SelectTrigger className="w-full md:flex-grow">
+              <SelectValue placeholder="All Statuses">
+                {FILTER_OPTIONS?.find(
+                  (option) => option.value === filterData
+                ) && (
+                  <FilterItem
+                    label={
+                      FILTER_OPTIONS.find(
+                        (option) => option.value === filterData
+                      )!.label
+                    }
+                    icon={
+                      FILTER_OPTIONS.find(
+                        (option) => option.value === filterData
+                      )!.icon
+                    }
+                    color={
+                      FILTER_OPTIONS.find(
+                        (option) => option.value === filterData
+                      )!.color
+                    }
+                    fill={
+                      FILTER_OPTIONS.find(
+                        (option) => option.value === filterData
+                      )!.fill
+                    }
+                  />
+                )}
+              </SelectValue>
+            </SelectTrigger>
+            <SelectContent>
+              {FILTER_OPTIONS?.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  <FilterItem
+                    label={option.label}
+                    icon={option.icon}
+                    color={option.color}
+                    fill={option.fill}
+                  />
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+
+      <AnalyticsActivityTable />
     </div>
   );
 };
