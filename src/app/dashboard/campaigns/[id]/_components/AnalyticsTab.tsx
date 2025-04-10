@@ -4,6 +4,7 @@ import { CHART_VALUE } from "@/utils/constants/campaignChartData";
 
 import AnalyticsChart from "./AnalyticsChart";
 import AnalyticsMetrics from "./AnalyticsMetrics";
+import AnalyticsNavigationTab from "./AnalyticsNavigationTab";
 
 export default function AnalyticsTab() {
   return (
@@ -26,6 +27,10 @@ export default function AnalyticsTab() {
           <AnalyticsMetrics />
           <AnalyticsChart chartData={CHART_VALUE} />
         </div>
+      </section>
+
+      <section className="border border-gray-400 rounded-lg p-4 mt-6">
+        <AnalyticsNavigationTab />
       </section>
     </>
   );
