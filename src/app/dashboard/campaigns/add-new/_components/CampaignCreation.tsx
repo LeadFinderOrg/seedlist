@@ -31,7 +31,7 @@ const CampaignCreation = () => {
             </div>
 
             <div className="flex justify-center pt-4">
-              <Button variant="primary" size="lg">
+              <Button className="bg-customBlue hover:bg-customBlue/90" size="lg">
                 Create Campaign
               </Button>
             </div>

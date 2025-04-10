@@ -1,11 +1,13 @@
 import { DownloadIcon, PauseIcon } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
 import AnalyticsTab from "./AnalyticsTab";
 import LeadsTab from "./LeadsTab";
-import SequencesTab from "./SequencesTab";
-import ScheduleTab from "./ScheduleTab";
 import OptionsTab from "./OptionsTab";
+import ScheduleTab from "./ScheduleTab";
+import SequencesTab from "./SequencesTab";
 
 interface TabItemTypes {
   value: string;
@@ -36,11 +38,17 @@ export default function CampaignsTab() {
           ))}
         </TabsList>
         <div className="flex gap-2">
-          <Button variant="outline" className="flex items-center gap-2 border rounded">
+          <Button
+            variant="outline"
+            className="flex items-center gap-2 border rounded"
+          >
             <PauseIcon size={16} />
             <span>Pause Campaign</span>
           </Button>
-          <Button variant="outline" className="w-10 flex items-center justify-center">
+          <Button
+            variant="outline"
+            className="w-10 flex items-center justify-center"
+          >
             <DownloadIcon size={16} />
           </Button>
         </div>

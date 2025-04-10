@@ -16,7 +16,7 @@ const CampaignPageRoot = () => {
   };
   return (
     <div>
-      <Button variant="primary" size="lg" onClick={handleAddNew}>
+      <Button className="bg-customBlue hover:bg-customBlue/90"  size="lg" onClick={handleAddNew}>
         <CirclePlus className="text-xl" />
         Add new
       </Button>
