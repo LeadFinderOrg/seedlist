@@ -101,29 +101,29 @@ export default function LeadsTab() {
               {statusDropdownOptions.find(
                 (option) => option.value === selectedStatus
               ) && (
-                <LeadStatusItem
-                  label={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.label
-                  }
-                  icon={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.icon
-                  }
-                  color={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.color
-                  }
-                  fill={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.fill
-                  }
-                />
-              )}
+                  <LeadStatusItem
+                    label={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.label
+                    }
+                    icon={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.icon
+                    }
+                    color={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.color
+                    }
+                    fill={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.fill
+                    }
+                  />
+                )}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>

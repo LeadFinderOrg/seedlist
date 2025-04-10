@@ -23,13 +23,13 @@ const tabItems: TabItemTypes[] = [
 export default function CampaignsTab() {
   return (
     <Tabs defaultValue="analytics">
-      <div className="my-6 flex items-center justify-between pb-2 border-b-2 border-[#F3F4F6] relative">
+      <div className="my-6 flex items-center justify-between pb-2 border-b-2 border-gray-100 relative">
         <TabsList className="w-[500px] grid grid-cols-5">
           {tabItems.map(({ value, label }) => (
             <TabsTrigger
               key={value}
               value={value}
-              className="relative data-[state=active]:before:content-[''] data-[state=active]:before:absolute data-[state=active]:before:h-[2px] data-[state=active]:before:w-full data-[state=active]:before:bg-[#3B82F6] data-[state=active]:before:bottom-[-13.75px]"
+              className="relative data-[state=active]:before:content-[''] data-[state=active]:before:absolute data-[state=active]:before:h-[2px] data-[state=active]:before:w-full data-[state=active]:before:bg-blue-500 data-[state=active]:before:bottom-[-13.75px]"
             >
               {label}
             </TabsTrigger>

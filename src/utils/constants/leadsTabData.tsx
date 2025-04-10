@@ -2,42 +2,43 @@ import { ActivityTypes } from "@/app/dashboard/campaigns/[id]/_components/Activi
 import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadsTab";
 import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadTableDrawer";
 import { AddLeadsOptionTypes } from "@/app/dashboard/campaigns/[id]/leads/add-new/_components/LeadsOptions";
+import { StatItemTypes } from "@/components/ui/statusbar";
 
 import { CircleCheck, FileUp, ListChecks, Mail, MailOpen, Plus, Reply, UserCheck, Users, Zap } from "lucide-react";
 
 const google = "/images/google.png";
 
 
-const statsBarData = [
+const statsBarData: StatItemTypes[] = [
     {
         title: 'Leads Created',
         number: 3428,
         icon: Users,
-        color: '#2563EB',
+        color: 'blue-600',
     },
     {
         title: 'Leads Contacted',
         number: 3428,
         icon: UserCheck,
-        color: '#9333EA',
+        color: 'purple-600',
     },
     {
         title: 'Leads Opened',
         number: 0,
         icon: MailOpen,
-        color: '#EA580C',
+        color: 'orange-600',
     },
     {
         title: 'Leads Replied',
         number: 24,
         icon: Reply,
-        color: '#DB2777',
+        color: 'pink-600',
     },
     {
         title: 'Completed Leads',
         number: 2985,
         icon: CircleCheck,
-        color: '#16A34A'
+        color: 'green-600',
     }
 ];
 
