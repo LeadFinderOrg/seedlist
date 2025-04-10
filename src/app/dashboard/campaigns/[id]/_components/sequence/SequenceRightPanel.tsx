@@ -1,9 +1,12 @@
 import React from 'react'
+import CommonInput from './richText/CommonInput'
 
 export default function SequenceRightPanel() {
     return (
-        <div>
-            Right Panel
+        <div className='p-2'>
+            <CommonInput />
+
+            <hr className='border-gray-300 mt-4' />
         </div>
     )
 }
