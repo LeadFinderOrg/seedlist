@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDropzone } from '@/components/ui/dropzone';
 import { cn } from '@/lib/utils';
-import { CircleX, FileText, Image as ImageIcon, Pointer, Plus } from 'lucide-react';
+import { CircleX, Image as ImageIcon, Pointer, Plus } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 
@@ -94,10 +94,8 @@ export default function UniversalDropzone({
     return (
       <div className='flex flex-col items-center justify-center gap-1 w-full md:w-[380px]'>
         <div className="flex items-start gap-2">
-          {isImageFile(file) ? (
+          {isImageFile(file) && (
             <ImageIcon className="h-5 w-5 text-blue-600" />
-          ) : (
-            <FileText className="h-8 w-8 text-blue-600" />
           )}
           <p className="font-medium text-slate-600 text-center">
             {file.name}
