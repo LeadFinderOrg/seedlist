@@ -25,7 +25,6 @@ const duplicateCheckOptions: CheckOption[] = [
 ];
 
 export default function UploadFile() {
-    const [selectedStatus, setSelectedStatus] = useState<string>('');
     const [fileDetails, setFileDetails] = useState<{ name: string; size: number } | null>(null);
 
     const { control, handleSubmit, formState: { errors } } = useForm<FormValues>({
@@ -80,8 +79,6 @@ export default function UploadFile() {
                     <LeadOwnerSelect
                         control={control}
                         errors={errors}
-                        selectedStatus={selectedStatus}
-                        onStatusChange={setSelectedStatus}
                     />
 
                     <DuplicateCheckOptions

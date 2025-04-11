@@ -19,15 +19,11 @@ interface FormValues {
 interface LeadOwnerSelectProps {
     control: Control<FormValues>;
     errors: FieldErrors<FormValues>;
-    selectedStatus: string;
-    onStatusChange: (value: string) => void;
 }
 
 export default function LeadOwnerSelect({
     control,
     errors,
-    selectedStatus,
-    onStatusChange
 }: LeadOwnerSelectProps) {
     return (
         <div className='flex flex-col gap-1 items-start mt-4'>
@@ -36,12 +32,15 @@ export default function LeadOwnerSelect({
                 name="leadOwner"
                 control={control}
                 render={({ field }) => (
-                    <Select {...field} value={selectedStatus} onValueChange={onStatusChange}>
+                    <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                    >
                         <SelectTrigger className="max-w-full lg:max-w-[616px] w-full md:flex-grow">
                             <SelectValue placeholder="Select">
-                                {uploadOptionsData.find((option) => option.value === selectedStatus) && (
+                                {uploadOptionsData.find((option) => option.value === field.value) && (
                                     <UploadOptions
-                                        label={uploadOptionsData.find((option) => option.value === selectedStatus)!.label}
+                                        label={uploadOptionsData.find((option) => option.value === field.value)!.label}
                                     />
                                 )}
                             </SelectValue>
@@ -59,4 +58,4 @@ export default function LeadOwnerSelect({
             {errors.leadOwner && <p className="text-red-500 text-sm">{errors.leadOwner.message}</p>}
         </div>
     );
-} 
+}
