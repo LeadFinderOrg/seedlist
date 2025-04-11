@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 import AnalyticsTab from "./AnalyticsTab";
-import LeadsTab from "./lead/LeadsTab";
 import OptionsTab from "./OptionsTab";
 import ScheduleTab from "./ScheduleTab";
-import SequencesTab from "./sequence/SequencesTab";
+import LeadsTab from "./Leads/LeadsTab";
+import SequencesTab from "./Sequences/SequencesTab";
 
 interface TabItemTypes {
   value: string;

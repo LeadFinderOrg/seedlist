@@ -1,5 +1,5 @@
 import React from 'react'
-import CommonInput from './richText/CommonInput'
+import CommonInput from './RichText/CommonInput'
 
 export default function SequenceRightPanel() {
     return (

@@ -19,7 +19,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { LeadTableDataTypes } from "./LeadsTab";
 import LeadTableDrawer from "./LeadTableDrawer";
-// import TableThreeDot from "./TableThreeDot";
 
 interface LeadTablePropsTypes {
     data: LeadTableDataTypes[];

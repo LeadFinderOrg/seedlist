@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { CirclePlus, LucideIcon, Search } from "lucide-react";
-import StatusBar from "@/components/ui/statusbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -17,6 +16,7 @@ import {
 } from "@/utils/constants/leadsTabData";
 import { LeadStatusItem } from "./LeadStatusItem";
 import LeadTable from "./LeadTable";
+import StatusBar from "./StatusBar";
 
 export interface StatusOptionTypes {
   value: string;

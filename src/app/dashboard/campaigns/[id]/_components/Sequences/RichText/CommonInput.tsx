@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Eye } from 'lucide-react'
 import React from 'react'
-import { ZapDropDown } from './ZapDropDown';
+import { ZapDropDown } from './ZapDropDown'
 
 export default function CommonInput() {
     return (

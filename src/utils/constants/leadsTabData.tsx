@@ -1,8 +1,8 @@
 import { ActivityTypes } from "@/app/dashboard/campaigns/[id]/_components/ActivitiesTab";
-import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/lead/LeadsTab";
-import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/lead/LeadTableDrawer";
+import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/Leads/LeadsTab";
+import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/Leads/LeadTableDrawer";
+import { StatItemTypes } from "@/app/dashboard/campaigns/[id]/_components/Leads/StatusBar";
 import { AddLeadsOptionTypes } from "@/app/dashboard/campaigns/[id]/leads/add-new/_components/LeadsOptions";
-import { StatItemTypes } from "@/components/ui/statusbar";
 
 import { CircleCheck, FileUp, ListChecks, Mail, MailOpen, Plus, Reply, UserCheck, Users, Zap } from "lucide-react";
 
