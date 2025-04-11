@@ -1,7 +1,9 @@
 import React from 'react';
 import { useDropzone } from '@/components/ui/dropzone';
 import { cn } from '@/lib/utils';
-import { CircleX, Pointer } from 'lucide-react';
+import { CircleX, FileText, Image as ImageIcon, Pointer, Plus } from 'lucide-react';
+import Image from 'next/image';
+import { Button } from '@/components/ui/button';
 
 export interface UniversalDropzoneProps {
   onUpload: (file: File) => Promise<{ success: boolean; error?: string }>;
@@ -19,6 +21,10 @@ export interface UniversalDropzoneProps {
   label?: string;
   description?: string;
 }
+
+const isImageFile = (file: File) => {
+  return file.type.startsWith('image/');
+};
 
 export default function UniversalDropzone({
   onUpload,
@@ -68,6 +74,42 @@ export default function UniversalDropzone({
     onRemoveFile(fileId);
   };
 
+  const renderFilePreview = (file: File) => {
+    if (isImageFile(file)) {
+      return (
+        <div className="relative w-24 h-24">
+          <Image
+            src={URL.createObjectURL(file)}
+            alt={file.name}
+            fill
+            className="object-cover rounded-lg"
+          />
+        </div>
+      );
+    }
+    return null;
+  };
+
+  const renderFileInfo = (file: File) => {
+    return (
+      <div className='flex flex-col items-center justify-center gap-1 w-full md:w-[380px]'>
+        <div className="flex items-start gap-2">
+          {isImageFile(file) ? (
+            <ImageIcon className="h-5 w-5 text-blue-600" />
+          ) : (
+            <FileText className="h-8 w-8 text-blue-600" />
+          )}
+          <p className="font-medium text-slate-600 text-center">
+            {file.name}
+          </p>
+        </div>
+        <p className="text-slate-500 text-xs">
+          {Math.round(file.size / 1024)} KB
+        </p>
+      </div>
+    );
+  };
+
   return (
     <div className={cn('w-full', className)}>
       {fileStatuses.length === 0 ? (
@@ -94,6 +136,11 @@ export default function UniversalDropzone({
               Maximum file size: {Math.round(maxSize / 1024 / 1024)}MB
             </p>
           )}
+          {multiple && (
+            <p className="text-xs text-slate-500">
+              Maximum {maxFiles} files allowed
+            </p>
+          )}
           {rootError && (
             <p className="text-xs text-red-500 mt-2">{rootError}</p>
           )}
@@ -102,15 +149,8 @@ export default function UniversalDropzone({
         <div className='w-full md:w-[616px] mx-auto flex flex-col items-center justify-center gap-4'>
           {fileStatuses.map((file) => (
             <div key={file.id} className="relative w-full flex items-center justify-center rounded-[20px] border-2 border-dashed border-blue-600 bg-blue-50 p-8 transition-colors">
-              <div className='flex flex-col items-center justify-center gap-1 w-full md:w-[380px]'>
-                <p className="font-medium text-slate-600 text-center">
-                  {file.fileName}
-                </p>
-                <p className="text-slate-500 text-xs">
-                  {Math.round(file.file.size / 1024)} KB
-                </p>
-              </div>
-
+              {renderFilePreview(file.file)}
+              {renderFileInfo(file.file)}
               <button
                 className="absolute top-1/2 right-4 transform -translate-y-1/2"
                 onClick={() => handleCancel(file.id)}
@@ -119,6 +159,19 @@ export default function UniversalDropzone({
               </button>
             </div>
           ))}
+
+          {multiple && fileStatuses.length < maxFiles && (
+            <div
+              {...getRootProps()}
+              className="flex w-full cursor-pointer flex-col items-center justify-center rounded-[20px] border-2 border-dashed border-blue-600 bg-blue-50 p-4 transition-colors hover:bg-blue-100"
+            >
+              <input {...getInputProps()} disabled={disabled} />
+              <Button variant="ghost" className="flex items-center gap-2 hover:bg-blue-100">
+                <Plus className="h-5 w-5 text-blue-600" />
+                <span className="text-blue-600">Upload Another</span>
+              </Button>
+            </div>
+          )}
         </div>
       )}
     </div>
