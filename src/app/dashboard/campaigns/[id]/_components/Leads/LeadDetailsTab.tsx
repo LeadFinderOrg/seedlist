@@ -58,7 +58,7 @@ export default function LeadDetailsTab() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#1E293B]">Email</FormLabel>
+                <FormLabel className="text-slate-800">Email</FormLabel>
                 <FormControl>
                   <Input type="email" placeholder="you@example.com" {...field} />
                 </FormControl>
@@ -73,7 +73,7 @@ export default function LeadDetailsTab() {
             name="first_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#1E293B]">First Name</FormLabel>
+                <FormLabel className="text-slate-800">First Name</FormLabel>
                 <FormControl>
                   <Input placeholder="John" {...field} />
                 </FormControl>
@@ -88,7 +88,7 @@ export default function LeadDetailsTab() {
             name="last_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#1E293B]">Last Name</FormLabel>
+                <FormLabel className="text-slate-800">Last Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Doe" {...field} />
                 </FormControl>
@@ -103,7 +103,7 @@ export default function LeadDetailsTab() {
             name="company_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#1E293B]">Company Name</FormLabel>
+                <FormLabel className="text-slate-800">Company Name</FormLabel>
                 <FormControl>
                   <Input placeholder="Company XYZ" {...field} />
                 </FormControl>
@@ -118,7 +118,7 @@ export default function LeadDetailsTab() {
             name="pause_until"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-[#1E293B]">Pause Until</FormLabel>
+                <FormLabel className="text-slate-800">Pause Until</FormLabel>
                 <FormControl>
                   <Input placeholder="Enter value"  {...field} />
                 </FormControl>
@@ -133,7 +133,7 @@ export default function LeadDetailsTab() {
               onClick={() => setIsAddVariable(true)}
             >
               <div className="flex items-center gap-2">
-                <CirclePlus className="h-5 w-5 text-[#2184C6]" /> <span className="text-[14px] text-[#2184C6]">Add Variable</span>
+                <CirclePlus className="h-5 w-5 text-customBlue" /> <span className="text-[14px] text-customBlue">Add Variable</span>
               </div>
             </div>}
 
@@ -145,7 +145,7 @@ export default function LeadDetailsTab() {
                 name="variable_name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#1E293B]">First Name</FormLabel>
+                    <FormLabel className="text-slate-800">First Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Example: mobile_number" {...field} />
                     </FormControl>
@@ -160,7 +160,7 @@ export default function LeadDetailsTab() {
                 name="variable_value"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#1E293B]">Variable Value</FormLabel>
+                    <FormLabel className="text-slate-800">Variable Value</FormLabel>
                     <FormControl>
                       <Input placeholder="Example: 123-456-7890" {...field} />
                     </FormControl>
@@ -175,7 +175,7 @@ export default function LeadDetailsTab() {
                 name="variable_type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-[#1E293B]">Variable Type</FormLabel>
+                    <FormLabel className="text-slate-800">Variable Type</FormLabel>
                     <FormControl>
                       <Input placeholder="Example: string" {...field} />
                     </FormControl>
@@ -186,14 +186,14 @@ export default function LeadDetailsTab() {
 
               <div className="flex justify-center items-center">
                 <div
-                  className="bg-[#EF4444] py-1 px-4 text-white rounded-md cursor-pointer text-[14px]"
+                  className="bg-red-500 py-1 px-4 text-white rounded-md cursor-pointer text-[14px]"
                   onClick={() => setIsAddVariable(false)}
                 >Remove</div>
               </div>
             </div>}
 
           <div className="flex justify-end !mt-8">
-            <Button type="submit" className="bg-[#2184C6] hover:bg-[#2184C6]">Save</Button>
+            <Button type="submit" className="bg-customBlue hover:bg-customBlue/90">Save</Button>
           </div>
         </form>
       </Form>

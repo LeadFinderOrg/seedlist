@@ -1,38 +1,44 @@
 import { ActivityTypes } from "@/app/dashboard/campaigns/[id]/_components/ActivitiesTab";
-import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadsTab";
-import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/LeadTableDrawer";
-import { CircleCheck, ListChecks, MailOpen, Plus, Reply, UserCheck, Users, Zap } from "lucide-react";
+import { StatusOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/Leads/LeadsTab";
+import { LeadDrawerOptionTypes } from "@/app/dashboard/campaigns/[id]/_components/Leads/LeadTableDrawer";
+import { StatItemTypes } from "@/app/dashboard/campaigns/[id]/_components/Leads/StatusBar";
+import { AddLeadsOptionTypes } from "@/app/dashboard/campaigns/[id]/leads/add-new/_components/LeadsOptions";
 
-const statsBarData = [
+import { CircleCheck, FileUp, ListChecks, Mail, MailOpen, Plus, Reply, UserCheck, Users, Zap } from "lucide-react";
+
+const google = "/images/google.png";
+
+
+const statsBarData: StatItemTypes[] = [
     {
         title: 'Leads Created',
         number: 3428,
         icon: Users,
-        color: '#2563EB',
+        color: 'blue-600',
     },
     {
         title: 'Leads Contacted',
         number: 3428,
         icon: UserCheck,
-        color: '#9333EA',
+        color: 'purple-600',
     },
     {
         title: 'Leads Opened',
         number: 0,
         icon: MailOpen,
-        color: '#EA580C',
+        color: 'orange-600',
     },
     {
         title: 'Leads Replied',
         number: 24,
         icon: Reply,
-        color: '#DB2777',
+        color: 'pink-600',
     },
     {
         title: 'Completed Leads',
         number: 2985,
         icon: CircleCheck,
-        color: '#16A34A'
+        color: 'green-600',
     }
 ];
 
@@ -147,9 +153,28 @@ const leadDrawerDropdownOptions: LeadDrawerOptionTypes[] = [
     }
 ];
 
+const addLeadsOptionData: AddLeadsOptionTypes[] = [
+    {
+        icon: <FileUp className="h-6 w-6 text-slate" />,
+        title: "Upload CSV",
+        slug: "upload-csv"
+    },
+    {
+        icon: <Mail className="h-6 w-6 text-slate" />,
+        title: "Enter Emails Manually",
+        slug: "enter-emails-manually"
+    },
+    {
+        image: google,
+        title: "Use Google Sheets",
+        slug: "use-google-sheets"
+    }
+];
+
 export {
     statsBarData,
     activitiesData,
     statusDropdownOptions,
     leadDrawerDropdownOptions,
+    addLeadsOptionData
 }

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { useParams, useRouter } from "next/navigation";
-
 import { CirclePlus, LucideIcon, Search } from "lucide-react";
-
-import StatsBar from "@/components/ui/StatsBar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -14,14 +10,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
 import {
   statsBarData,
   statusDropdownOptions,
 } from "@/utils/constants/leadsTabData";
-
 import { LeadStatusItem } from "./LeadStatusItem";
 import LeadTable from "./LeadTable";
+import StatusBar from "./StatusBar";
 
 export interface StatusOptionTypes {
   value: string;
@@ -47,14 +42,14 @@ export default function LeadsTab() {
   const campaignId = params.id;
 
   //states
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [selectedStatus, setSelectedStatus] = useState<string>("all");
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [selectedStatus, setSelectedStatus] = useState<string>('all');
   const [data, setData] = useState<LeadTableDataTypes[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   //navigate to add new lead page handler
   const handleAddNew = () => {
-    router.push(`/dashboard/campaigns/${campaignId}/leads/new`);
+    router.push(`/dashboard/campaigns/${campaignId}/leads/add-new`);
   };
 
   useEffect(() => {
@@ -76,7 +71,7 @@ export default function LeadsTab() {
   return (
     <div>
       <div className="flex justify-between items-center">
-        <Button size="lg" onClick={handleAddNew}>
+        <Button size="lg" className="bg-customBlue hover:bg-customBlue/90" onClick={handleAddNew}>
           <CirclePlus className="text-xl" />
           Add new
         </Button>
@@ -97,7 +92,7 @@ export default function LeadsTab() {
       </div>
       <div className="flex justify-between items-center mt-3">
         {/* stats bar */}
-        <StatsBar stats={statsBarData} />
+        <StatusBar stats={statsBarData} />
 
         {/* all status select */}
         <Select value={selectedStatus} onValueChange={setSelectedStatus}>
@@ -106,29 +101,29 @@ export default function LeadsTab() {
               {statusDropdownOptions.find(
                 (option) => option.value === selectedStatus
               ) && (
-                <LeadStatusItem
-                  label={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.label
-                  }
-                  icon={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.icon
-                  }
-                  color={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.color
-                  }
-                  fill={
-                    statusDropdownOptions.find(
-                      (option) => option.value === selectedStatus
-                    )!.fill
-                  }
-                />
-              )}
+                  <LeadStatusItem
+                    label={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.label
+                    }
+                    icon={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.icon
+                    }
+                    color={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.color
+                    }
+                    fill={
+                      statusDropdownOptions.find(
+                        (option) => option.value === selectedStatus
+                      )!.fill
+                    }
+                  />
+                )}
             </SelectValue>
           </SelectTrigger>
           <SelectContent>

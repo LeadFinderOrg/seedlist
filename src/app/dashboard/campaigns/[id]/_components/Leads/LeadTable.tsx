@@ -19,7 +19,6 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { LeadTableDataTypes } from "./LeadsTab";
 import LeadTableDrawer from "./LeadTableDrawer";
-// import TableThreeDot from "./TableThreeDot";
 
 interface LeadTablePropsTypes {
     data: LeadTableDataTypes[];
@@ -90,10 +89,10 @@ const LeadTable: React.FC<LeadTablePropsTypes> = ({ data, loading }) => {
             header: "STATUS",
             cell: () => {
                 return <div className="flex items-center gap-2">
-                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-[#16A34A] text-[#16A34A]">
+                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-green-600 text-green-600">
                         Completed
                     </button>
-                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-[#EF4444] text-[#EF4444]">
+                    <button className="px-3 py-1 rounded-[14px] bg-transparent border border-red-500 text-red-500">
                         Not Interested
                     </button>
                 </div>;
