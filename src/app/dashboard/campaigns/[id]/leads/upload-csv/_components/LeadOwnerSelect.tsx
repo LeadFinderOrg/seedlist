@@ -21,6 +21,11 @@ interface LeadOwnerSelectProps {
     errors: FieldErrors<FormValues>;
 }
 
+export interface UploadOptionsTypes {
+    value: string;
+    label: string;
+}
+
 export default function LeadOwnerSelect({
     control,
     errors,

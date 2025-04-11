@@ -1,4 +1,4 @@
-import { UploadOptionsTypes } from "@/app/dashboard/campaigns/[id]/leads/upload-csv/_components/UploadFile";
+import { UploadOptionsTypes } from "@/app/dashboard/campaigns/[id]/leads/upload-csv/_components/LeadOwnerSelect";
 
 
 const uploadOptionsData: UploadOptionsTypes[] = [
